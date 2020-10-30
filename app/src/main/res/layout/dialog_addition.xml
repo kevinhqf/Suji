@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bg_dialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="16dp"
+        android:id="@+id/da_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_addition_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/da_iv_icon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="16dp"
+            android:src="@mipmap/icon_pic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/da_tv_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/exo_2_bold"
+            android:lines="1"
+            android:text="￥0"
+            android:textAlignment="textEnd"
+            android:textColor="@color/primary"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@id/da_iv_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/da_iv_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        app:layout_constraintEnd_toEndOf="@id/da_content"
+        app:layout_constraintTop_toBottomOf="@id/da_content"
+        android:id="@+id/da_iv_addType"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/icon_addition"/>
+
+    <TextView
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="@id/da_iv_addType"
+        app:layout_constraintEnd_toEndOf="@id/da_iv_addType"
+        app:layout_constraintTop_toBottomOf="@id/da_iv_addType"
+        android:textSize="15sp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/da_tv_addType"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:text="添加"
+        android:textColor="@color/primary"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginEnd="16dp"
+        android:id="@+id/da_rv_type"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/da_tv_addType"
+        app:layout_constraintEnd_toStartOf="@id/da_iv_addType"
+        app:layout_constraintStart_toStartOf="@id/da_content"
+        app:layout_constraintTop_toBottomOf="@id/da_content" />
+
+
+    <include
+        android:layout_marginTop="16dp"
+        android:id="@+id/da_recommend"
+        layout="@layout/widget_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/da_tv_addType" />
+
+    <include
+        android:id="@+id/da_numpad"
+        layout="@layout/widget_numpad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/da_recommend" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
