@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardUseCompatPadding="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/it_icon"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@mipmap/icon_preset_parking"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/it_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="停车费"
+            android:textColor="@android:color/black"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@id/it_value"
+            app:layout_constraintStart_toEndOf="@id/it_icon"
+            app:layout_constraintTop_toTopOf="@id/it_icon" />
+
+        <TextView
+            android:id="@+id/it_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10-22, 2020 2:32PM"
+            android:textColor="#B0B1B1"
+            app:layout_constraintBottom_toBottomOf="@id/it_icon"
+            app:layout_constraintStart_toStartOf="@id/it_title" />
+
+        <TextView
+            android:id="@+id/it_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="-￥8"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/it_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/it_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

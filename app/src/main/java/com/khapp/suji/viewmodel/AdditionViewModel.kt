@@ -1,16 +1,51 @@
 package com.khapp.suji.viewmodel
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.kevinhqf.app.quicknote.utils.NumPadUtils
+import com.khapp.suji.Constance
+import com.khapp.suji.database.entity.DataType
+import com.khapp.suji.database.entity.TransactionInfo
+import com.khapp.suji.repository.AdditionRepository
+import com.khapp.suji.view.comm.BaseViewModel
 
-class AdditionViewModel : ViewModel() {
-     val newValues : MutableLiveData<String> by lazy {
-         MutableLiveData<String>("0")
-     }
+class AdditionViewModel(private val repository: AdditionRepository) : BaseViewModel() {
+    val newValues: MutableLiveData<String> by lazy {
+        MutableLiveData<String>("0")
+    }
+    val dataTypes: LiveData<List<DataType>>
+        get() {
+            return repository.loadDataTypeByUid(Constance.userId)
+        }
+
+    val newDataType: MutableLiveData<DataType> = MutableLiveData()
 
 
+    fun addDataType(data: DataType) {
+        launchIO {
+            repository.addDataType(data)
+        }
+    }
+
+
+
+    fun addTransaction() {
+        //todo 检查，重置，更新datatype的usetime
+        launchIO {
+            newDataType.value?.let {
+                repository.addTransaction(
+                    TransactionInfo(
+                        it.id,
+                        newValues.value?.toFloat()!!,
+                        Constance.userId,
+                        Constance.lat,
+                        Constance.lng,
+                        Constance.address
+                    )
+                )
+            }
+        }
+    }
 
     fun numpadAction(action: String) {
         val curValue = newValues.value
@@ -67,3 +102,4 @@ class AdditionViewModel : ViewModel() {
 
     }
 }
+

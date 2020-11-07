@@ -1,5 +1,10 @@
 package com.khapp.suji.utils
 
+import android.content.Context
+import android.widget.Toast
+import java.text.SimpleDateFormat
+import java.util.*
+
 object Utils {
     fun formatMoney(money: Double): String {
         var sign = "￥"
@@ -29,6 +34,14 @@ object Utils {
         val group = value.split(".")
         val int = String.format("%,.0f",group[0].toDouble())
         return if (group.size>1) "$int.${group[1]}" else int
+    }
+
+    fun toast(context: Context,text:String){
+        Toast.makeText(context,text,Toast.LENGTH_SHORT).show()
+    }
+
+    fun getCurrentTimeStr(pattern:String="yyyy-MM-dd HH:mm:ss"):String{
+        return SimpleDateFormat(pattern, Locale.getDefault()).format(Date())
     }
 }
 

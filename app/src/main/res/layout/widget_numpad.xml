@@ -211,6 +211,7 @@
         app:layout_constraintStart_toStartOf="@id/numpad_9"
         app:layout_constraintTop_toTopOf="@id/numpad_0" />
     <ImageView
+        android:id="@+id/numpad_ok"
         android:layout_marginStart="@dimen/numpad_margin_gap"
         android:background="#1D3552"
         android:padding="40dp"
