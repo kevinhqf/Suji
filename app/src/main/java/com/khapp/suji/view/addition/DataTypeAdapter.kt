@@ -29,11 +29,19 @@ class DataTypeAdapter(private val context: Context) : RecyclerView.Adapter<RVHol
                 onDataTypeSelectListener?.onSelect(data[position])
             }
         }
+    }
 
-
+    fun hasSameContent(other: DataType): SameContentInfo {
+        data.forEach {
+            if (other.name == it.name && other.type == it.type && other.uid == it.uid) {
+                return SameContentInfo(true,it.id)
+            }
+        }
+        return SameContentInfo(false,null)
     }
 
     interface OnDataTypeSelectListener {
         fun onSelect(data: DataType)
     }
+    data class SameContentInfo(val isSame:Boolean,val dataTypeId:Int?)
 }

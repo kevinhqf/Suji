@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
+import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.LocationUtils
 import com.khapp.suji.view.addition.AdditionDialog
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private val additionViewModel: AdditionViewModel by viewModels {
         InjectorUtils.provideAdditionViewModelFactory()
     }
-    private val transactionViewModel:TransactionViewModel by viewModels {
+    private val transactionViewModel: TransactionViewModel by viewModels {
         InjectorUtils.provideTransactionViewModelFactory()
     }
     private lateinit var additionDialog: AdditionDialog
@@ -82,7 +83,13 @@ class MainActivity : AppCompatActivity() {
             additionDialog.updateDataTypeList(it)
         })
         additionViewModel.newDataType.observe(this, Observer {
-            additionDialog.updateIcon(it.icon)
+            if (it == null) {
+                additionDialog.updateIcon(R.mipmap.icon_pic)
+                additionDialog.updateMoneySign(NoteType.INCOME.value)
+            } else {
+                additionDialog.updateIcon(it.icon)
+                additionDialog.updateMoneySign(it.type)
+            }
         })
 
     }

@@ -30,18 +30,26 @@ object Utils {
         }
     }
 
-    fun formatNumpadMoney(value:String):String{
+    fun formatNumpadMoney(value: String): String {
         val group = value.split(".")
-        val int = String.format("%,.0f",group[0].toDouble())
-        return if (group.size>1) "$int.${group[1]}" else int
+        val int = String.format("%,.0f", group[0].toDouble())
+        return if (group.size > 1) "$int.${group[1]}" else int
     }
 
-    fun toast(context: Context,text:String){
-        Toast.makeText(context,text,Toast.LENGTH_SHORT).show()
+    fun toast(context: Context, text: String) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    fun getCurrentTimeStr(pattern:String="yyyy-MM-dd HH:mm:ss"):String{
+    fun getCurrentTimeStr(pattern: String = "yyyy-MM-dd HH:mm:ss"): String {
         return SimpleDateFormat(pattern, Locale.getDefault()).format(Date())
     }
+
+    fun formatTransactionTime(time: Long): String {
+        val date = Date(time)
+        val sign = if (date.hours >= 12) "PM" else "AM"
+        return SimpleDateFormat("MM-dd,yyyy hh:mm", Locale.getDefault()).format(date)+sign
+
+    }
 }
+
 

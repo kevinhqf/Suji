@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.khapp.suji.R
 import com.khapp.suji.data.NoteType
 import com.khapp.suji.database.entity.TransactionDetail
+import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.RVHolder
 import kotlinx.android.synthetic.main.item_transaction.view.*
 import kotlinx.android.synthetic.main.item_type.view.*
@@ -30,7 +31,7 @@ class TransactionAdapter(val context: Context) :
             getItem(position)?.let { item ->
                 Glide.with(context).load(item.dataTypeIcon).into(it.it_icon)
                 it.it_title.text = item.dataTypeName
-                it.it_time.text = item.createTime
+                it.it_time.text = Utils.formatTransactionTime(item.createTime)
                 if (item.dataTypeValue == NoteType.INCOME.value) {
                     it.it_value.text = "￥${item.value}"
                 } else {

@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khapp.suji.Constance
 import com.khapp.suji.R
+import com.khapp.suji.data.NoteType
 import com.khapp.suji.database.entity.DataType
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.utils.Utils
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.widget_numpad.*
 
 class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
     private val typeAdapter: DataTypeAdapter
+    var moneyValue: String = ""
+    var moneySign: String = ""
 
     init {
         setContentView(R.layout.dialog_addition)
@@ -36,8 +39,16 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
     }
 
     fun updateMoneyValue(value: String) {
-        da_tv_value.text = "￥" + Utils.formatNumpadMoney(value)
+        moneyValue = Utils.formatNumpadMoney(value)
+        da_tv_value.text = moneySign + "￥" + moneyValue
+
     }
+
+    fun updateMoneySign(type: Int) {
+        moneySign = if (type == NoteType.EXPENSE.value) "-" else ""
+        da_tv_value.text = moneySign + "￥" + moneyValue
+    }
+
 
     fun updateIcon(res: Int) {
         Glide.with(context).load(res).into(da_iv_icon)
@@ -47,21 +58,21 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
     fun initListeners(vm: AdditionViewModel) {
         typeAdapter.onDataTypeSelectListener = object : DataTypeAdapter.OnDataTypeSelectListener {
             override fun onSelect(data: DataType) {
-                vm.newDataType.postValue(data)
+                vm.setNewDataType(data)
             }
         }
         da_iv_addType.setOnClickListener {
             val addTypeDialog = AddTypeDialog(context)
             addTypeDialog.setOKListener {
-                //todo 添加的类型已存在
-                vm.addDataType(
-                    DataType(
-                        name = it.name,
-                        icon = it.icon,
-                        type = it.type.value,
-                        uid = Constance.userId
-                    )
+
+                val dataType = DataType(
+                    name = it.name,
+                    icon = it.icon,
+                    type = it.type.value,
+                    uid = Constance.userId
                 )
+                vm.addDataType(dataType, typeAdapter.hasSameContent(dataType))
+
             }.show()
         }
 
@@ -110,8 +121,11 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
             vm.numpadAction("del")
         }
         numpad_ok.setOnClickListener {
-            vm.addTransaction()
-            cancel()
+            vm.addTransaction(
+                { Utils.toast(context, "请选择记账类型") },
+                { Utils.toast(context, "请输入记账金额") },
+                { cancel() })
+
         }
 
     }

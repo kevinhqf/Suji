@@ -21,4 +21,8 @@ class AdditionRepository(private val dtDao: DataTypeDao,private val transactionD
     suspend fun addTransaction(data:TransactionInfo){
         transactionDao.insert(data)
     }
+
+     fun updateDataTypeUseTime(useTime:Long,dataTypeId:Int){
+        dtDao.updateUseTime(useTime,dataTypeId)
+    }
 }

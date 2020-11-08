@@ -7,6 +7,7 @@ import com.khapp.suji.Constance
 import com.khapp.suji.database.entity.DataType
 import com.khapp.suji.database.entity.TransactionInfo
 import com.khapp.suji.repository.AdditionRepository
+import com.khapp.suji.view.addition.DataTypeAdapter
 import com.khapp.suji.view.comm.BaseViewModel
 
 class AdditionViewModel(private val repository: AdditionRepository) : BaseViewModel() {
@@ -21,30 +22,60 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
     val newDataType: MutableLiveData<DataType> = MutableLiveData()
 
 
-    fun addDataType(data: DataType) {
+    fun addDataType(data: DataType, sameContentInfo: DataTypeAdapter.SameContentInfo) {
         launchIO {
-            repository.addDataType(data)
+            //添加记账类型时检查是否已存在相同的类型，如果有则更新使用时间，让其排序靠前，如没有则添加
+            if (sameContentInfo.isSame) {
+                repository.updateDataTypeUseTime(
+                    System.currentTimeMillis(),
+                    sameContentInfo.dataTypeId!!
+                )
+            } else {
+                repository.addDataType(data)
+            }
         }
     }
 
+    fun setNewDataType(data: DataType) {
+        newDataType.postValue(data)
+    }
 
 
-    fun addTransaction() {
-        //todo 检查，重置，更新datatype的usetime
-        launchIO {
-            newDataType.value?.let {
-                repository.addTransaction(
-                    TransactionInfo(
-                        it.id,
-                        newValues.value?.toFloat()!!,
-                        Constance.userId,
-                        Constance.lat,
-                        Constance.lng,
-                        Constance.address
-                    )
-                )
+    fun addTransaction(typeError: () -> Unit, valueError: () -> Unit, completed: () -> Unit) {
+        when {
+            newDataType.value == null -> {
+                typeError()
+            }
+            newValues.value.isNullOrEmpty() || newValues.value?.toFloat() == 0f -> {
+                valueError()
+            }
+            else -> {
+                launchIO {
+                    newDataType.value?.let {
+                        repository.addTransaction(
+                            TransactionInfo(
+                                it.id,
+                                newValues.value?.toFloat()!!,
+                                Constance.userId,
+                                Constance.lat,
+                                Constance.lng,
+                                Constance.address
+                            )
+                        )
+                        repository.updateDataTypeUseTime(System.currentTimeMillis(), it.id)
+
+                    }
+                    launchUI { completed() }
+                    reset()
+                }
             }
         }
+
+    }
+
+    private fun reset() {
+        newValues.postValue("0")
+        newDataType.postValue(null)
     }
 
     fun numpadAction(action: String) {
@@ -98,8 +129,6 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-
     }
 }
 

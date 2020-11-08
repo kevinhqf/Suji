@@ -13,6 +13,6 @@ data class DataType(
     @ColumnInfo(name = "type") var type: Int,
     @ColumnInfo(name = "uid") var uid: Long,
     @ColumnInfo(name="last_use_time")var lastUseTime:Long=System.currentTimeMillis(),
-    @ColumnInfo(name = "create_time") val createTime: String=Utils.getCurrentTimeStr()
+    @ColumnInfo(name = "create_time") val createTime: Long=System.currentTimeMillis()
 ){
 }
