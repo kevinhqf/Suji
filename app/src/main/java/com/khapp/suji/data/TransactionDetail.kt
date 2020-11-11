@@ -1,4 +1,4 @@
-package com.khapp.suji.database.entity
+package com.khapp.suji.data
 
 
 data class TransactionDetail(

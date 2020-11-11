@@ -7,11 +7,11 @@
     android:background="@drawable/bg_dialog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="16dp"
         android:id="@+id/da_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_addition_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,48 +47,50 @@
 
 
     <ImageView
-        app:layout_constraintEnd_toEndOf="@id/da_content"
-        app:layout_constraintTop_toBottomOf="@id/da_content"
         android:id="@+id/da_iv_addType"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:src="@mipmap/icon_addition"/>
+        android:src="@mipmap/icon_addition"
+        app:layout_constraintEnd_toEndOf="@id/da_content"
+        app:layout_constraintTop_toBottomOf="@id/da_content" />
 
     <TextView
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintStart_toStartOf="@id/da_iv_addType"
-        app:layout_constraintEnd_toEndOf="@id/da_iv_addType"
-        app:layout_constraintTop_toBottomOf="@id/da_iv_addType"
-        android:textSize="15sp"
-        android:layout_marginBottom="8dp"
         android:id="@+id/da_tv_addType"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="marquee"
         android:gravity="center"
         android:singleLine="true"
-        android:ellipsize="marquee"
         android:text="添加"
-        android:textColor="@color/primary"/>
+        android:textColor="@color/primary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/da_iv_addType"
+        app:layout_constraintStart_toStartOf="@id/da_iv_addType"
+        app:layout_constraintTop_toBottomOf="@id/da_iv_addType" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginEnd="16dp"
         android:id="@+id/da_rv_type"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintBottom_toBottomOf="@id/da_tv_addType"
         app:layout_constraintEnd_toStartOf="@id/da_iv_addType"
-        app:layout_constraintStart_toStartOf="@id/da_content"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/da_content" />
 
 
     <include
-        android:layout_marginTop="16dp"
         android:id="@+id/da_recommend"
         layout="@layout/widget_recommend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/da_tv_addType" />

@@ -2,6 +2,7 @@ package com.khapp.suji.view.addition
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -26,7 +27,23 @@ class DataTypeAdapter(private val context: Context) : RecyclerView.Adapter<RVHol
             Glide.with(context).load(data[position].icon).into(it_iv_icon)
             it_tv_title.text = data[position].name
             setOnClickListener {
-                onDataTypeSelectListener?.onSelect(data[position])
+
+            }
+            setOnFocusChangeListener { view, b ->
+                if (b) {
+                    onDataTypeSelectListener?.onSelect(data[position])
+                    it_tv_title.isFocusable = true
+                    it_tv_title.isFocusableInTouchMode = true
+                    it_tv_title.isSelected = true
+                    it_bg_icon.visibility = View.VISIBLE
+
+                } else {
+
+                    it_bg_icon.visibility = View.INVISIBLE
+                    it_tv_title.isSelected = false
+                    it_tv_title.isFocusable = false
+                    it_tv_title.isFocusableInTouchMode = false
+                }
             }
         }
     }
@@ -34,14 +51,15 @@ class DataTypeAdapter(private val context: Context) : RecyclerView.Adapter<RVHol
     fun hasSameContent(other: DataType): SameContentInfo {
         data.forEach {
             if (other.name == it.name && other.type == it.type && other.uid == it.uid) {
-                return SameContentInfo(true,it.id)
+                return SameContentInfo(true, it.id)
             }
         }
-        return SameContentInfo(false,null)
+        return SameContentInfo(false, null)
     }
 
     interface OnDataTypeSelectListener {
         fun onSelect(data: DataType)
     }
-    data class SameContentInfo(val isSame:Boolean,val dataTypeId:Int?)
+
+    data class SameContentInfo(val isSame: Boolean, val dataTypeId: Int?)
 }

@@ -69,7 +69,7 @@ dependencies {
     // For developers using AndroidX in their applications
     implementation 'pub.devrel:easypermissions:3.0.0'
 
-    def paging_version = "3.0.0-alpha07"
+    def paging_version = "2.1.2"
 
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 }

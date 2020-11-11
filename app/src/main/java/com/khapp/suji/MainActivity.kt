@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        transactionViewModel.loadUid(Constance.userId)
+
     }
 
 

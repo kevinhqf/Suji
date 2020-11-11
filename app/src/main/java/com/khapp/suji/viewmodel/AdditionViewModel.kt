@@ -54,12 +54,15 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
                     newDataType.value?.let {
                         repository.addTransaction(
                             TransactionInfo(
-                                it.id,
                                 newValues.value?.toFloat()!!,
                                 Constance.userId,
                                 Constance.lat,
                                 Constance.lng,
-                                Constance.address
+                                Constance.address,
+                                it.id,
+                                it.name,
+                                it.icon,
+                                it.type
                             )
                         )
                         repository.updateDataTypeUseTime(System.currentTimeMillis(), it.id)

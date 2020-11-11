@@ -11,5 +11,6 @@
     <color name="numpad_text_color">#26333E</color>
     <color name="chip_bg">#FFFFFF</color>
     <color name="blue_500">#03A9F4</color>
+    <color name="selected_color">#5B4FC3F7</color>
 
 </resources>

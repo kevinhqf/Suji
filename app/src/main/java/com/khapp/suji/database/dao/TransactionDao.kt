@@ -1,21 +1,33 @@
 package com.khapp.suji.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.khapp.suji.database.entity.TransactionDetail
+import com.khapp.suji.data.TransactionDetail
 import com.khapp.suji.database.entity.TransactionInfo
 
 @Dao
 interface TransactionDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg data:TransactionInfo)
+    suspend fun insert(vararg data: TransactionInfo)
 
-    @Query("SELECT transaction_info.id,transaction_info.uid,transaction_info.value,transaction_info.address,transaction_info.createTime, data_type.id AS dataTypeId,data_type.name AS dataTypeName,data_type.icon_id AS dataTypeIcon,data_type.type AS dataTypeValue FROM transaction_info,data_type WHERE transaction_info.dataTypeId = data_type.id AND transaction_info.uid = :uid ORDER BY transaction_info.createTime DESC"
+    @Query(
+        "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid ORDER BY transaction_info.createTime DESC LIMIT :start,:pageSize"
     )
-    fun loadTransactionDetailByUid(uid:Long):DataSource.Factory<Int,TransactionDetail>
+    fun loadTransactionByUid(uid: Long, start: Int, pageSize: Int): List<TransactionInfo>
 
+    @Query(
+        "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid ORDER BY transaction_info.createTime DESC"
+    )
+    fun loadTransactionByUid(uid: Long): DataSource.Factory<Int,TransactionInfo>
+
+    @Query(
+        "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid AND transaction_info.createTime BETWEEN :start AND :end"
+    )
+    fun getTransactionByTime(uid: Long,start:Long,end:Long):LiveData<List<TransactionInfo>>
 
 }

@@ -5,7 +5,6 @@ import androidx.room.RoomDatabase
 import com.khapp.suji.database.dao.DataTypeDao
 import com.khapp.suji.database.dao.TransactionDao
 import com.khapp.suji.database.entity.DataType
-import com.khapp.suji.database.entity.TransactionDetail
 import com.khapp.suji.database.entity.TransactionInfo
 
 @Database(entities = [DataType::class,TransactionInfo::class],exportSchema = false,version = 1)

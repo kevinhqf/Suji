@@ -30,7 +30,7 @@
             android:id="@+id/it_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="停车费"
@@ -42,21 +42,23 @@
 
         <TextView
             android:id="@+id/it_time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="10-22, 2020 2:32PM"
+            android:text="10-22,20 02:32PM"
             android:textColor="#B0B1B1"
             app:layout_constraintBottom_toBottomOf="@id/it_icon"
+            app:layout_constraintEnd_toStartOf="@id/it_value"
             app:layout_constraintStart_toStartOf="@id/it_title" />
 
         <TextView
             android:id="@+id/it_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:text="-￥8"
+            android:layout_marginEnd="16dp"
+            android:text="-￥8,000"
+            android:fontFamily="@font/exo_2"
             android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textSize="21sp"
             app:layout_constraintBottom_toBottomOf="@id/it_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/it_icon" />

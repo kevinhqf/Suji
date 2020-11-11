@@ -6,7 +6,7 @@
     android:background="@drawable/bg_main_top">
 
     <TextView
-        android:id="@+id/om_tv_title"
+        android:id="@+id/oh_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,7 +20,7 @@
 
     <ImageView
         android:visibility="invisible"
-        android:id="@+id/om_iv_add"
+        android:id="@+id/oh_iv_add"
         android:layout_width="46dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
@@ -28,11 +28,11 @@
         android:padding="5dp"
         android:src="@mipmap/icon_plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/om_tv_title"
-        app:layout_constraintBottom_toBottomOf="@id/om_tv_title"/>
+        app:layout_constraintTop_toTopOf="@id/oh_tv_title"
+        app:layout_constraintBottom_toBottomOf="@id/oh_tv_title" />
 
     <TextView
-        android:id="@+id/om_tv_total"
+        android:id="@+id/oh_tv_total"
         android:layout_width="0dp"
         android:layout_marginTop="4dp"
         android:layout_height="wrap_content"
@@ -44,22 +44,21 @@
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/om_tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/oh_tv_title" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/oh_card"
         android:layout_marginTop="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@android:color/black"
         app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/om_iv_add"
-        app:layout_constraintStart_toStartOf="@id/om_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/om_tv_total">
+        app:layout_constraintEnd_toEndOf="@id/oh_iv_add"
+        app:layout_constraintStart_toStartOf="@id/oh_tv_title"
+        app:layout_constraintTop_toBottomOf="@id/oh_tv_total">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,17 +66,17 @@
             android:padding="12dp">
 
             <LinearLayout
-                android:id="@+id/om_expense_label"
+                android:id="@+id/oh_expense_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="@id/om_split"
+                app:layout_constraintEnd_toEndOf="@id/oh_split"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/om_iv_expense"
+                    android:id="@+id/oh_iv_expense"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@mipmap/icon_arrow_green"
@@ -86,19 +85,19 @@
 
                 <TextView
                     android:lines="1"
-                    android:id="@+id/om_tv_expense_label"
+                    android:id="@+id/oh_tv_expense_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="支出"
                     android:textColor="#95FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@id/om_iv_expense"
-                    app:layout_constraintStart_toEndOf="@id/om_iv_expense"
-                    app:layout_constraintTop_toTopOf="@id/om_iv_expense" />
+                    app:layout_constraintBottom_toBottomOf="@id/oh_iv_expense"
+                    app:layout_constraintStart_toEndOf="@id/oh_iv_expense"
+                    app:layout_constraintTop_toTopOf="@id/oh_iv_expense" />
             </LinearLayout>
 
 
             <TextView
-                android:id="@+id/om_tv_expense"
+                android:id="@+id/oh_tv_expense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -106,47 +105,47 @@
                 android:fontFamily="@font/exo_2_bold"
                 android:textColor="@android:color/white"
                 android:textSize="19sp"
-                app:layout_constraintEnd_toStartOf="@id/om_split"
+                app:layout_constraintEnd_toStartOf="@id/oh_split"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/om_expense_label" />
+                app:layout_constraintTop_toBottomOf="@id/oh_expense_label" />
 
             <FrameLayout
-                android:id="@+id/om_split"
+                android:id="@+id/oh_split"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:background="#97FBFBFB"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/om_tv_income"
-                app:layout_constraintStart_toEndOf="@id/om_tv_expense"
+                app:layout_constraintEnd_toStartOf="@id/oh_tv_income"
+                app:layout_constraintStart_toEndOf="@id/oh_tv_expense"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:gravity="center_vertical"
-                android:id="@+id/om_income_label"
+                android:id="@+id/oh_income_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/om_split"
+                app:layout_constraintStart_toEndOf="@id/oh_split"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/om_iv_income"
+                    android:id="@+id/oh_iv_income"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@mipmap/icon_arrow_red" />
 
                 <TextView
-                    android:id="@+id/om_tv_income_label"
+                    android:id="@+id/oh_tv_income_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收入"
-                    android:textColor="#95FFFFFF"/>
+                    android:textColor="#95FFFFFF" />
             </LinearLayout>
 
             <TextView
                 android:lines="1"
-                android:id="@+id/om_tv_income"
+                android:id="@+id/oh_tv_income"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -155,11 +154,26 @@
                 android:textSize="19sp"
                 android:fontFamily="@font/exo_2_bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/om_split"
-                app:layout_constraintTop_toBottomOf="@id/om_income_label" />
+                app:layout_constraintStart_toEndOf="@id/oh_split"
+                app:layout_constraintTop_toBottomOf="@id/oh_income_label" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/oh_tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:paddingBottom="6dp"
+        android:textColor="@android:color/white"
+        android:text="今天还没有记账记录哦~"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/oh_card"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
