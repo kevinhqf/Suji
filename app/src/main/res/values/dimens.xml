@@ -5,4 +5,8 @@
     <dimen name="numpad_padding_text">20dp</dimen>
     <dimen name="numpad_text_size">21sp</dimen>
     <dimen name="chip_padding">12dp</dimen>
+    <dimen name="page_title_text_size">25sp</dimen>
+    <dimen name="page_money_text_size">28sp</dimen>
+    <dimen name="padding_hor_analysis_time">12dp</dimen>
+    <dimen name="padding_ver_analysis_time">4dp</dimen>
 </resources>

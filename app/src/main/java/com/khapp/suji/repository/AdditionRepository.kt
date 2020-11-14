@@ -28,4 +28,8 @@ class AdditionRepository(
     fun updateDataTypeUseTime(useTime: Long, dataTypeId: Int) {
         dtDao.updateUseTime(useTime, dataTypeId)
     }
+
+    suspend fun getRecommendTransaction(){
+
+    }
 }

@@ -13,6 +13,7 @@ import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.LocationUtils
 import com.khapp.suji.view.addition.AdditionDialog
+import com.khapp.suji.view.analysis.AnalysisFragment
 import com.khapp.suji.view.home.HomeFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         additionDialog = AdditionDialog(this)
         supportFragmentManager.commit {
-            replace(R.id.am_content, HomeFragment.newInstance())
+            replace(R.id.am_content, AnalysisFragment.newInstance())
         }
     }
 

@@ -31,6 +31,20 @@ object Utils {
         }
     }
 
+    fun formatChartScale(value: Float): String {
+        return when {
+            value >= 10000 -> {
+                val num = (value / 10000)
+                "${String.format("%.1f", num)}W"
+            }
+            value >= 1000 -> {
+                val num = (value / 1000)
+                "${String.format("%.1f", num)}K"
+            }
+            else -> value.toInt().toString()
+        }
+    }
+
     /**
      * 格式化numpad的金钱数值
      */
@@ -73,7 +87,7 @@ object Utils {
     fun getFormatMoneyStr(value: Float): String {
         val sign = if (value >= 0) "" else "-"
 
-        return "$sign￥${String.format("%,.2f", value).replace("-","")}"
+        return "$sign￥${String.format("%,.2f", value).replace("-", "")}"
     }
 }
 

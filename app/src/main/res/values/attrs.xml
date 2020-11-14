@@ -6,4 +6,12 @@
         <attr name="txt" format="string"/>
 
     </declare-styleable>
+
+    <declare-styleable name="HistogramView">
+        <attr name="itemSpace" format="dimension"/>
+        <attr name="titleSpace" format="dimension"/>
+        <attr name="itemWidth" format="dimension"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="color"/>
+    </declare-styleable>
 </resources>

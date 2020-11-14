@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="false"
     app:cardElevation="5dp"
-    android:layout_gravity="bottom">
+    app:cardCornerRadius="50dp"
+    android:layout_marginBottom="16dp"
+    android:layout_gravity="bottom|center">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +15,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="16dp"
             android:id="@+id/mm_iv_home"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -26,6 +30,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:id="@+id/mm_iv_data"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -36,6 +42,8 @@
             app:layout_constraintTop_toTopOf="@id/mm_iv_home" />
 
         <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
             android:id="@+id/mm_iv_user"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -44,8 +52,20 @@
             app:layout_constraintEnd_toStartOf="@id/mm_add"
             app:layout_constraintStart_toEndOf="@id/mm_iv_data"
             app:layout_constraintTop_toTopOf="@id/mm_iv_home" />
-
+        <FrameLayout
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="#ccc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mm_iv_user"
+            app:layout_constraintEnd_toStartOf="@id/mm_add"
+            android:id="@+id/mm_split"
+            android:layout_width="1dp"
+            android:layout_height="0dp"/>
         <LinearLayout
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:paddingEnd="24dp"
             android:paddingStart="16dp"
             android:paddingTop="4dp"
