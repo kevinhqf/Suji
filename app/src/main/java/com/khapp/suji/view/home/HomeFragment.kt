@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.util.Util
 import com.khapp.suji.R
 import com.khapp.suji.data.NoteType
@@ -26,6 +27,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     lateinit var adapter: TransactionAdapter
+    var scrollListener: OnListScrollListener? = null
     private val transactionViewModel: TransactionViewModel by activityViewModels {
         InjectorUtils.provideTransactionViewModelFactory()
     }
@@ -67,8 +69,25 @@ class HomeFragment : Fragment() {
         adapter = TransactionAdapter(requireContext())
         root.fh_rv.adapter = adapter
         root.fh_rv.layoutManager = LinearLayoutManager(requireContext())
+        initListener(root)
         initObserver(root)
         return root
+    }
+
+    private fun initListener(root: View) {
+        root.fh_rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 50) {
+                    scrollListener?.onScrollUp()
+                } else if (dy < -50) {
+                    scrollListener?.onScrollDown()
+                }
+            }
+        })
+
     }
 
     companion object {
@@ -78,5 +97,10 @@ class HomeFragment : Fragment() {
                 arguments = Bundle().apply {
                 }
             }
+    }
+
+    interface OnListScrollListener {
+        fun onScrollUp()
+        fun onScrollDown()
     }
 }

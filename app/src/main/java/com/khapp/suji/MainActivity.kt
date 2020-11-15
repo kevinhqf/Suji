@@ -1,6 +1,7 @@
 package com.khapp.suji
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.LocationUtils
+import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.view.addition.AdditionDialog
 import com.khapp.suji.view.analysis.AnalysisFragment
 import com.khapp.suji.view.home.HomeFragment
@@ -19,6 +21,7 @@ import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
 import com.tencent.map.geolocation.TencentLocation
 import com.tencent.map.geolocation.TencentLocationListener
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.menu_main.*
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
@@ -36,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         InjectorUtils.provideTransactionViewModelFactory()
     }
     private lateinit var additionDialog: AdditionDialog
+    private val homeFragment = HomeFragment.newInstance()
+    private val analysisFragment = AnalysisFragment.newInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -95,17 +100,41 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    var isMenuHide = false
     private fun initListeners() {
         additionDialog.initListeners(additionViewModel)
         mm_add.setOnClickListener {
             additionDialog.show()
         }
+        //滑动隐藏menu
+        val height = ScreenUtils.getHeight(this).toFloat()
+        val y =  am_menu.y
+        homeFragment.scrollListener = object : HomeFragment.OnListScrollListener {
+            override fun onScrollUp() {
+                if (!isMenuHide) {
+                    isMenuHide = true
+                    Log.e("onScrolled: ", "hide")
+                    am_menu.animate().translationY(height).setDuration(400).start()
+
+                }
+            }
+            override fun onScrollDown() {
+                if (isMenuHide) {
+                    isMenuHide = false
+                    Log.e("onScrolled: ", "show")
+                    am_menu.animate().translationY(y).setDuration(400).start()
+
+                }
+            }
+
+        }
+
     }
 
     private fun initViews() {
         additionDialog = AdditionDialog(this)
         supportFragmentManager.commit {
-            replace(R.id.am_content, AnalysisFragment.newInstance())
+            replace(R.id.am_content, homeFragment)
         }
     }
 
