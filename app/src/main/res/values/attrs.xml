@@ -13,5 +13,10 @@
         <attr name="itemWidth" format="dimension"/>
         <attr name="textSize" format="dimension"/>
         <attr name="textColor" format="color"/>
+        <attr name="dashWidth" format="dimension"/>
+        <attr name="dashGap" format="dimension"/>
+        <attr name="gridWidth" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="gridLines" format="integer"/>
     </declare-styleable>
 </resources>

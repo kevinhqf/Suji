@@ -8,30 +8,39 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.khapp.suji.R
+import com.khapp.suji.ui.HistogramView
 import kotlinx.android.synthetic.main.fragment_analysis.view.*
 
-class AnalysisFragment:Fragment() {
+class AnalysisFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_analysis,container,false)
+        val root = inflater.inflate(R.layout.fragment_analysis, container, false)
+        initData(root)
         initListener(root)
         initObserver(root)
         return root
     }
 
+    private fun initData(root: View) {
+
+
+
+
+    }
+
     private fun initListener(root: View) {
-        root.fa_tv_time1.setOnClickListener{
-            selectTab(it as TextView,root)
+        root.fa_tv_time1.setOnClickListener {
+            selectTab(it as TextView, root)
         }
-        root.fa_tv_time2.setOnClickListener{
-            selectTab(it as TextView,root)
+        root.fa_tv_time2.setOnClickListener {
+            selectTab(it as TextView, root)
         }
-        root.fa_tv_time3.setOnClickListener{
-            selectTab(it as TextView,root)
+        root.fa_tv_time3.setOnClickListener {
+            selectTab(it as TextView, root)
         }
     }
 
@@ -39,19 +48,19 @@ class AnalysisFragment:Fragment() {
 
     }
 
-    fun clearTabState(root: View){
-        root.fa_tv_time1.isSelected=false
+    fun clearTabState(root: View) {
+        root.fa_tv_time1.background = null
         root.fa_tv_time1.setTextColor(Color.WHITE)
-        root.fa_tv_time2.isSelected=false
+        root.fa_tv_time2.background = null
         root.fa_tv_time2.setTextColor(Color.WHITE)
-        root.fa_tv_time3.isSelected=false
+        root.fa_tv_time3.background = null
         root.fa_tv_time3.setTextColor(Color.WHITE)
     }
 
-    fun selectTab(view:TextView,root:View){
+    fun selectTab(view: TextView, root: View) {
         clearTabState(root)
         view.setTextColor(Color.parseColor("#D9000000"))
-        view.isSelected = true
+        view.setBackgroundResource(R.drawable.bg_page_tab_selected)
     }
 
 

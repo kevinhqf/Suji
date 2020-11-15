@@ -18,15 +18,21 @@ import kotlin.math.min
  * 直方图，需要的数据集：[X轴，Y轴]
  */
 class HistogramView : View {
+    //柱状图属性
     var space = 30f
     var itemSpace = 10f
     var titleSpace = 32f
     var itemWidth = 20f
-
+    var radius = itemWidth / 2
 
     var textSize = 36f
     var textColor = Color.BLACK
 
+    // 网格图属性
+    var dashWidth = 10f
+    var dashGap = 10f
+    var gridWidth = 4f
+    var gridLines = 4
 
     var dataSet = ArrayList<Histogram>()
     var grid: HistogramGrid? = null
@@ -70,6 +76,26 @@ class HistogramView : View {
             textSize
         )
         textColor = a.getColor(R.styleable.HistogramView_textColor, textColor)
+        dashGap = a.getDimension(
+            R.styleable.HistogramView_dashGap,
+            dashGap
+        )
+        dashWidth = a.getDimension(
+            R.styleable.HistogramView_dashWidth,
+            dashWidth
+        )
+        gridWidth = a.getDimension(
+            R.styleable.HistogramView_gridWidth,
+            gridWidth
+        )
+        radius = a.getDimension(
+            R.styleable.HistogramView_radius,
+            radius
+        )
+        gridLines = a.getInteger(
+            R.styleable.HistogramView_gridLines,
+            gridLines
+        )
         a.recycle()
 
 
@@ -89,7 +115,9 @@ class HistogramView : View {
     }
 
     fun setData(data: ArrayList<Histogram.HistogramData>, itemColors: Array<Int>) {
-        val startX = 120f
+        dataSet.clear()
+        grid = null
+        val startX = 115f
         val startY = height - 50f
 
         val histogram = Histogram(startX, startY, data[0]).let { h ->
@@ -99,15 +127,24 @@ class HistogramView : View {
             h.titleSpace = titleSpace
             h
         }
-        space = (width - startX * 2 - histogram.getWidth() * data.size) / (data.size - 1)
+        space = (width - startX * 3 / 2 - histogram.getWidth() * data.size) / (data.size - 1)
         val weight = getWeight(data)
         grid = HistogramGrid(
             startX,
             startY - histogram.textHeight - titleSpace,
             height.toFloat(),
-            width.toFloat() - space,
+            width.toFloat() - startX / 2,
             weight
-        )
+        ).let { hg ->
+            hg.dashWidth = dashWidth
+            hg.dashGap = dashGap
+            hg.gridWidth = gridWidth
+            hg.textSize = textSize
+            hg.textColor = textColor
+            hg.gridColor = textColor
+            hg.lineSize = gridLines
+            hg
+        }
         data.forEachIndexed { index, histogramData ->
 
             dataSet.add(
@@ -122,13 +159,28 @@ class HistogramView : View {
                     h.textSize = textSize
                     h.titleSpace = titleSpace
                     h.itemColors = itemColors
+                    h.radius = radius
                     h.weight = weight
                     h
                 })
         }
-
+        invalidate()
     }
 
+    fun test() {
+        setData(
+            arrayListOf(
+                HistogramView.Histogram.HistogramData("周日", arrayListOf(2020f, 200f)),
+                HistogramView.Histogram.HistogramData("周一", arrayListOf(300f, 200f)),
+                HistogramView.Histogram.HistogramData("周二", arrayListOf(1450f, 270f)),
+                HistogramView.Histogram.HistogramData("周三", arrayListOf(140f, 1100f)),
+                HistogramView.Histogram.HistogramData("周四", arrayListOf(1430f, 220f)),
+                HistogramView.Histogram.HistogramData("周五", arrayListOf(1440f, 1120f)),
+                HistogramView.Histogram.HistogramData("周六", arrayListOf(730f, 1220f))
+            ),
+            arrayOf(Color.parseColor("#FF5D5D"), Color.parseColor("#5EDA72"))
+        )
+    }
 
     private fun getSize(measureSpec: Int, isWidth: Boolean): Int {
         val result: Int
@@ -157,22 +209,7 @@ class HistogramView : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
-
-        //todo
-        setData(
-            arrayListOf(
-                Histogram.HistogramData("周日", arrayListOf(24020f, 200f)),
-                Histogram.HistogramData("周一", arrayListOf(300f, 200f)),
-                Histogram.HistogramData("周二", arrayListOf(150f, 270f)),
-                Histogram.HistogramData("周三", arrayListOf(40f, 100f)),
-                Histogram.HistogramData("周四", arrayListOf(30f, 220f)),
-                Histogram.HistogramData("周五", arrayListOf(130f, 1520f)),
-                Histogram.HistogramData("周六", arrayListOf(730f, 1220f))
-            ),
-            arrayOf(Color.GREEN, Color.RED)
-        )
-
+        test()
         grid?.draw(canvas)
         dataSet.forEach {
             it.draw(canvas)
@@ -190,39 +227,67 @@ class HistogramView : View {
 
         var dotLinePaint = Paint()
         var gridColor = Color.GRAY
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
+
         var gridWidth = 4f
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
         var dashGap = 10f
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
         var dashWidth = 10f
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
         var lineSize = 4
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
         var linePaths = ArrayList<Path>()
         var labels = ArrayList<LabelText>()
 
         var textPaint = TextPaint()
-        var textColor = Color.BLACK
+        var textColor = Color.GRAY
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
         var textSize = 36f
+            set(value) {
+                field = value
+                invalidatePaint()
+            }
 
-        init {
+        fun invalidatePaint() {
             dotLinePaint.apply {
                 color = gridColor
-                isAntiAlias = true
-                style = Paint.Style.STROKE
                 strokeWidth = gridWidth
                 pathEffect = DashPathEffect(floatArrayOf(dashWidth, dashGap), 0f)
             }
             textPaint.let {
-                it.isAntiAlias = true
                 it.textSize = textSize
                 it.color = textColor
             }
-            val lineSpace = height / lineSize
-            var scale = lineSpace * weight
+            linePaths.clear()
+            labels.clear()
+            val lineSpace = (height - 50) / lineSize
+            val scale = lineSpace * weight
             for (i in 0..lineSize) {
 
                 val lineY = y - lineSpace * i
                 labels.add(
                     LabelText(
                         x, lineY,
-                        "${Utils.formatChartScale(scale * i)}", textPaint
+                        Utils.formatChartScale(scale * i), textPaint
                     )
                 )
 
@@ -231,6 +296,15 @@ class HistogramView : View {
                 path.lineTo(width, lineY)
                 linePaths.add(path)
             }
+        }
+
+        init {
+            dotLinePaint.apply {
+                isAntiAlias = true
+                style = Paint.Style.STROKE
+            }
+            textPaint.isAntiAlias = true
+            invalidatePaint()
         }
 
         fun draw(canvas: Canvas) {
@@ -363,8 +437,8 @@ class HistogramView : View {
                     dataRect.top,
                     dataRect.right,
                     dataRect.bottom,
-                    getRadius(),
-                    getRadius(),
+                    radius,
+                    radius,
                     paints[index]
                 )
             }
@@ -394,9 +468,11 @@ class HistogramView : View {
             return x + (getWidth() - getDataSetWidth()) / 2
         }
 
-        fun getRadius(): Float {
-            return itemWidth / 2
-        }
+        var radius = itemWidth / 2
+            set(value) {
+                field = value
+                invalidateData()
+            }
 
 
         fun getLeft(): Float {
