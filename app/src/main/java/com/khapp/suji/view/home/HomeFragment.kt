@@ -16,6 +16,7 @@ import com.khapp.suji.R
 import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.Utils
+import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.viewmodel.TransactionViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -27,7 +28,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     lateinit var adapter: TransactionAdapter
-    var scrollListener: OnListScrollListener? = null
+    var scrollListener: OnMainPageScrollListener? = null
     private val transactionViewModel: TransactionViewModel by activityViewModels {
         InjectorUtils.provideTransactionViewModelFactory()
     }
@@ -81,8 +82,10 @@ class HomeFragment : Fragment() {
 
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 50) {
+                    //上滑
                     scrollListener?.onScrollUp()
                 } else if (dy < -50) {
+                    //下滑
                     scrollListener?.onScrollDown()
                 }
             }
@@ -99,8 +102,4 @@ class HomeFragment : Fragment() {
             }
     }
 
-    interface OnListScrollListener {
-        fun onScrollUp()
-        fun onScrollDown()
-    }
 }

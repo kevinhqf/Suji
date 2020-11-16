@@ -9,4 +9,6 @@
     <dimen name="page_money_text_size">28sp</dimen>
     <dimen name="padding_hor_analysis_time">12dp</dimen>
     <dimen name="padding_ver_analysis_time">4dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_radius">32dp</dimen>
 </resources>

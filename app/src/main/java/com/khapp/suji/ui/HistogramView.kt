@@ -6,6 +6,8 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.core.graphics.TypefaceCompat
+import com.khapp.suji.App
 import com.khapp.suji.R
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.utils.Utils
@@ -18,6 +20,7 @@ import kotlin.math.min
  * 直方图，需要的数据集：[X轴，Y轴]
  */
 class HistogramView : View {
+
     //柱状图属性
     var space = 30f
     var itemSpace = 10f
@@ -54,6 +57,7 @@ class HistogramView : View {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
+
         // Load attributes
         val a = context.obtainStyledAttributes(
             attrs, R.styleable.HistogramView, defStyle, 0
@@ -129,6 +133,8 @@ class HistogramView : View {
         }
         space = (width - startX * 3 / 2 - histogram.getWidth() * data.size) / (data.size - 1)
         val weight = getWeight(data)
+
+        //设置网格数据
         grid = HistogramGrid(
             startX,
             startY - histogram.textHeight - titleSpace,
@@ -145,6 +151,7 @@ class HistogramView : View {
             hg.lineSize = gridLines
             hg
         }
+        //设置直方图数据
         data.forEachIndexed { index, histogramData ->
 
             dataSet.add(
@@ -174,9 +181,7 @@ class HistogramView : View {
                 HistogramView.Histogram.HistogramData("周一", arrayListOf(300f, 200f)),
                 HistogramView.Histogram.HistogramData("周二", arrayListOf(1450f, 270f)),
                 HistogramView.Histogram.HistogramData("周三", arrayListOf(140f, 1100f)),
-                HistogramView.Histogram.HistogramData("周四", arrayListOf(1430f, 220f)),
-                HistogramView.Histogram.HistogramData("周五", arrayListOf(1440f, 1120f)),
-                HistogramView.Histogram.HistogramData("周六", arrayListOf(730f, 1220f))
+                HistogramView.Histogram.HistogramData("周四", arrayListOf(1430f, 220f))
             ),
             arrayOf(Color.parseColor("#FF5D5D"), Color.parseColor("#5EDA72"))
         )
@@ -267,7 +272,7 @@ class HistogramView : View {
                 invalidatePaint()
             }
 
-        fun invalidatePaint() {
+        private fun invalidatePaint() {
             dotLinePaint.apply {
                 color = gridColor
                 strokeWidth = gridWidth
@@ -423,7 +428,6 @@ class HistogramView : View {
 
 
         fun draw(canvas: Canvas) {
-
 
             canvas.drawText(
                 data.title,

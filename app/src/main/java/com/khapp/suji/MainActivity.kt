@@ -16,6 +16,7 @@ import com.khapp.suji.utils.LocationUtils
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.view.addition.AdditionDialog
 import com.khapp.suji.view.analysis.AnalysisFragment
+import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.home.HomeFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
@@ -30,6 +31,9 @@ import pub.devrel.easypermissions.EasyPermissions
 class MainActivity : AppCompatActivity() {
     companion object {
         const val RC_LOCATION_PHONE_STORAGE: Int = 1
+        const val HOME_POSITION = 1
+        const val DATA_POSITION = 2
+        const val USER_POSITION = 3
     }
 
     private val additionViewModel: AdditionViewModel by viewModels {
@@ -38,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     private val transactionViewModel: TransactionViewModel by viewModels {
         InjectorUtils.provideTransactionViewModelFactory()
     }
+
+
     private lateinit var additionDialog: AdditionDialog
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
@@ -80,6 +86,20 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun clearMenuItemState() {
+        mm_iv_home.setImageResource(R.mipmap.icon_home_normal)
+        mm_iv_data.setImageResource(R.mipmap.icon_data_normal)
+        mm_iv_user.setImageResource(R.mipmap.icon_user_normal)
+    }
+
+    private fun changeMenuItemState(position: Int) {
+        clearMenuItemState()
+        when (position) {
+            HOME_POSITION -> mm_iv_home.setImageResource(R.mipmap.icon_home_active)
+            DATA_POSITION -> mm_iv_data.setImageResource(R.mipmap.icon_data_active)
+            USER_POSITION -> mm_iv_user.setImageResource(R.mipmap.icon_user_active)
+        }
+    }
 
     private fun initObservers() {
         additionViewModel.newValues.observe(this, Observer {
@@ -108,8 +128,8 @@ class MainActivity : AppCompatActivity() {
         }
         //滑动隐藏menu
         val height = ScreenUtils.getHeight(this).toFloat()
-        val y =  am_menu.y
-        homeFragment.scrollListener = object : HomeFragment.OnListScrollListener {
+        val y = am_menu.y
+        val scrollListener = object : OnMainPageScrollListener {
             override fun onScrollUp() {
                 if (!isMenuHide) {
                     isMenuHide = true
@@ -118,16 +138,30 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
+
             override fun onScrollDown() {
                 if (isMenuHide) {
                     isMenuHide = false
                     Log.e("onScrolled: ", "show")
-                    am_menu.animate().translationY(y).setDuration(400).start()
+                    am_menu.animate().translationY(y).setDuration(300).start()
 
                 }
             }
 
         }
+
+        homeFragment.scrollListener = scrollListener
+        analysisFragment.scrollListener = scrollListener
+        mm_iv_home.setOnClickListener {
+            changeFragment(HOME_POSITION)
+        }
+        mm_iv_data.setOnClickListener {
+            changeFragment(DATA_POSITION)
+        }
+        mm_iv_user.setOnClickListener {
+            changeFragment(USER_POSITION)
+        }
+
 
     }
 
@@ -136,6 +170,23 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             replace(R.id.am_content, homeFragment)
         }
+    }
+
+    private fun changeFragment(position: Int){
+        changeMenuItemState(position)
+        when(position){
+            HOME_POSITION->{
+                supportFragmentManager.commit {
+                    replace(R.id.am_content, homeFragment)
+                }
+            }
+            DATA_POSITION->{
+                supportFragmentManager.commit {
+                    replace(R.id.am_content, analysisFragment)
+                }
+            }
+        }
+
     }
 
     override fun onRequestPermissionsResult(
