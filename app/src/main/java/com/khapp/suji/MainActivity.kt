@@ -18,6 +18,7 @@ import com.khapp.suji.view.addition.AdditionDialog
 import com.khapp.suji.view.analysis.AnalysisFragment
 import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.home.HomeFragment
+import com.khapp.suji.view.user.UserFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
 import com.tencent.map.geolocation.TencentLocation
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var additionDialog: AdditionDialog
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
+    private val userFragment = UserFragment.newInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -172,17 +174,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeFragment(position: Int){
+    private fun changeFragment(position: Int) {
         changeMenuItemState(position)
-        when(position){
-            HOME_POSITION->{
+        when (position) {
+            HOME_POSITION -> {
                 supportFragmentManager.commit {
                     replace(R.id.am_content, homeFragment)
                 }
             }
-            DATA_POSITION->{
+            DATA_POSITION -> {
                 supportFragmentManager.commit {
                     replace(R.id.am_content, analysisFragment)
+                }
+            }
+            USER_POSITION -> {
+                supportFragmentManager.commit {
+                    replace(R.id.am_content, userFragment)
                 }
             }
         }

@@ -11,4 +11,13 @@
     <dimen name="padding_ver_analysis_time">4dp</dimen>
     <dimen name="card_elevation">10dp</dimen>
     <dimen name="card_radius">32dp</dimen>
+    <dimen name="setting_icon_size">30dp</dimen>
+    <dimen name="setting_text_size">19sp</dimen>
+    <dimen name="setting_arrow_size">20dp</dimen>
+    <dimen name="default_card_radius">10dp</dimen>
+    <dimen name="setting_value_text_size">19sp</dimen>
+    <dimen name="setting_dialog_icon_size">55dp</dimen>
+    <dimen name="setting_dialog_text_size">22sp</dimen>
+    <dimen name="setting_dialog_icon_margin">24dp</dimen>
+    <dimen name="setting_dialog_text_margin">16dp</dimen>
 </resources>

@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.khapp.suji.R
 
-class UserFragment:Fragment() {
+class UserFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -14,7 +15,9 @@ class UserFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val root = inflater.inflate(R.layout.fragment_user, container, false)
+
+        return root
     }
 
     companion object {

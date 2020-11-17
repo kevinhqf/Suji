@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:id="@+id/dsl_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="选择语言"
+        android:textColor="@color/primary_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--简体中文-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dsl_item_chinese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_dialog_setting_item_selected"
+        app:layout_constraintEnd_toStartOf="@id/dsl_item_english"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dsl_tv_title">
+
+        <ImageView
+            android:id="@+id/dsl_iv_chinese"
+            android:layout_width="@dimen/setting_dialog_icon_size"
+            android:layout_height="@dimen/setting_dialog_icon_size"
+            android:layout_marginStart="@dimen/setting_dialog_icon_margin"
+            android:layout_marginTop="@dimen/setting_dialog_icon_margin"
+            android:layout_marginEnd="@dimen/setting_dialog_icon_margin"
+            android:src="@mipmap/icon_language_chinese"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dsl_tv_chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_dialog_text_margin"
+            android:layout_marginBottom="@dimen/setting_dialog_text_margin"
+            android:text="简体中文"
+            android:textSize="@dimen/setting_dialog_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dsl_iv_chinese"
+            app:layout_constraintStart_toStartOf="@id/dsl_iv_chinese"
+            app:layout_constraintTop_toBottomOf="@id/dsl_iv_chinese" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--English-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dsl_item_english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dsl_item_chinese"
+        app:layout_constraintTop_toTopOf="@id/dsl_item_chinese">
+
+        <ImageView
+            android:id="@+id/dsl_iv_english"
+            android:layout_width="@dimen/setting_dialog_icon_size"
+            android:layout_height="@dimen/setting_dialog_icon_size"
+            android:layout_marginStart="@dimen/setting_dialog_icon_margin"
+            android:layout_marginTop="@dimen/setting_dialog_icon_margin"
+            android:layout_marginEnd="@dimen/setting_dialog_icon_margin"
+            android:src="@mipmap/icon_language_english"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dsl_tv_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_dialog_text_margin"
+            android:layout_marginBottom="@dimen/setting_dialog_text_margin"
+            android:text="English"
+            android:textSize="@dimen/setting_dialog_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dsl_iv_english"
+            app:layout_constraintStart_toStartOf="@id/dsl_iv_english"
+            app:layout_constraintTop_toBottomOf="@id/dsl_iv_english" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        layout="@layout/dialog_button_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dsl_item_chinese" />
+</androidx.constraintlayout.widget.ConstraintLayout>

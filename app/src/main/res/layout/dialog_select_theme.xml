@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:id="@+id/dst_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="选择主题"
+        android:textColor="@color/primary_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--浅色item-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dst_item_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_dialog_setting_item_selected"
+        app:layout_constraintEnd_toStartOf="@id/dst_item_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dst_tv_title">
+
+        <ImageView
+            android:id="@+id/dst_iv_light"
+            android:layout_width="@dimen/setting_dialog_icon_size"
+            android:layout_height="@dimen/setting_dialog_icon_size"
+            android:layout_marginStart="@dimen/setting_dialog_icon_margin"
+            android:layout_marginTop="@dimen/setting_dialog_icon_margin"
+            android:layout_marginEnd="@dimen/setting_dialog_icon_margin"
+            android:src="@mipmap/icon_theme_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dst_tv_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_dialog_text_margin"
+            android:layout_marginBottom="@dimen/setting_dialog_text_margin"
+            android:text="浅色"
+            android:textSize="@dimen/setting_dialog_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dst_iv_light"
+            app:layout_constraintStart_toStartOf="@id/dst_iv_light"
+            app:layout_constraintTop_toBottomOf="@id/dst_iv_light" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--深色item-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dst_item_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/dst_item_auto"
+        app:layout_constraintStart_toEndOf="@id/dst_item_light"
+        app:layout_constraintTop_toTopOf="@id/dst_item_light">
+
+        <ImageView
+            android:id="@+id/dst_iv_dark"
+            android:layout_width="@dimen/setting_dialog_icon_size"
+            android:layout_height="@dimen/setting_dialog_icon_size"
+            android:layout_marginStart="@dimen/setting_dialog_icon_margin"
+            android:layout_marginTop="@dimen/setting_dialog_icon_margin"
+            android:layout_marginEnd="@dimen/setting_dialog_icon_margin"
+            android:src="@mipmap/icon_theme_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dst_tv_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_dialog_text_margin"
+            android:layout_marginBottom="@dimen/setting_dialog_text_margin"
+            android:text="深色"
+            android:textSize="@dimen/setting_dialog_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dst_iv_dark"
+            app:layout_constraintStart_toStartOf="@id/dst_iv_dark"
+            app:layout_constraintTop_toBottomOf="@id/dst_iv_dark" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--自动item-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dst_item_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dst_item_dark"
+        app:layout_constraintTop_toTopOf="@id/dst_item_light">
+
+        <ImageView
+            android:id="@+id/dst_iv_auto"
+            android:layout_width="@dimen/setting_dialog_icon_size"
+            android:layout_height="@dimen/setting_dialog_icon_size"
+            android:layout_marginStart="@dimen/setting_dialog_icon_margin"
+            android:layout_marginTop="@dimen/setting_dialog_icon_margin"
+            android:layout_marginEnd="@dimen/setting_dialog_icon_margin"
+            android:src="@mipmap/icon_theme_auto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dst_tv_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_dialog_text_margin"
+            android:layout_marginBottom="@dimen/setting_dialog_text_margin"
+            android:text="自动"
+            android:textSize="@dimen/setting_dialog_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dst_iv_auto"
+            app:layout_constraintStart_toStartOf="@id/dst_iv_auto"
+            app:layout_constraintTop_toBottomOf="@id/dst_iv_auto" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        layout="@layout/dialog_button_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dst_item_light" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
