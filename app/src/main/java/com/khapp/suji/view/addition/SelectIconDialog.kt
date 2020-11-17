@@ -9,6 +9,7 @@ import com.khapp.suji.R
 import com.khapp.suji.utils.IconSet
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.utils.Utils
+import kotlinx.android.synthetic.main.dialog_button_action.*
 import kotlinx.android.synthetic.main.dialog_select_icon.*
 
 class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
@@ -24,7 +25,7 @@ class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Di
     }
 
     private fun initListeners() {
-        dsi_iv_close.setOnClickListener {
+        dialog_close.setOnClickListener {
             cancel()
         }
         adapter.selectIconListener = object : IconAdapter.OnSelectIconListener {
@@ -44,7 +45,7 @@ class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Di
 
 
     fun setOKListener(onOK: (Int) -> Unit): SelectIconDialog {
-        dsi_tv_ok.setOnClickListener {
+        dialog_ok.setOnClickListener {
             if (selectedIconId != -1) {
                 onOK.invoke(selectedIconId)
                 cancel()

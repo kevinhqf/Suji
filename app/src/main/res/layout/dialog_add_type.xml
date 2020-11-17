@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/bg_dialog"
+    android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:layout_height="wrap_content">
+    android:background="@drawable/bg_dialog">
 
     <TextView
         android:id="@+id/dat_tv_title"
@@ -17,105 +16,109 @@
         android:textSize="25sp"
         android:textStyle="bold"
 
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
 
-        android:background="@drawable/bg_icon_pic"
-        app:layout_constraintStart_toStartOf="@id/dat_tv_title"
-        app:layout_constraintEnd_toEndOf="@id/dat_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/dat_tv_title"
-        android:src="@mipmap/icon_pic"
         android:id="@+id/dat_iv_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_icon_pic"
         android:padding="48dp"
         android:scaleX="0.75"
         android:scaleY="0.75"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:src="@mipmap/icon_pic"
+        app:layout_constraintEnd_toEndOf="@id/dat_tv_title"
+        app:layout_constraintStart_toStartOf="@id/dat_tv_title"
+        app:layout_constraintTop_toBottomOf="@id/dat_tv_title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="16dp"
         android:id="@+id/dat_type"
-        app:layout_constraintStart_toStartOf="@id/dat_iv_pic"
-        app:layout_constraintEnd_toEndOf="@id/dat_iv_pic"
-        app:layout_constraintTop_toBottomOf="@id/dat_iv_pic"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_edittext"
-        android:layout_height="wrap_content">
+        app:layout_constraintEnd_toEndOf="@id/dat_iv_pic"
+        app:layout_constraintStart_toStartOf="@id/dat_iv_pic"
+        app:layout_constraintTop_toBottomOf="@id/dat_iv_pic">
+
         <FrameLayout
             android:id="@+id/dat_switcher"
-            android:layout_margin="5dp"
-            android:background="@drawable/bg_switcher"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/dat_expense"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            />
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_switcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/dat_expense"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
+            android:id="@+id/dat_expense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:id="@+id/dat_expense"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dat_income"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dat_income"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
                 android:id="@+id/dat_iv_expense"
-                android:src="@mipmap/icon_arrow_green"
                 android:layout_width="25dp"
-                android:layout_height="25dp"/>
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_arrow_green" />
+
             <TextView
 
-                android:text="支出"
-                android:textSize="19sp"
-                android:textColor="@color/primary_green"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/dat_tv_expense"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="支出"
+                android:textColor="@color/primary_green"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/dat_income"
-            app:layout_constraintStart_toEndOf="@id/dat_expense"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dat_expense"
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
                 android:id="@+id/dat_iv_income"
-                android:src="@mipmap/icon_arrow_down_gray"
                 android:layout_width="25dp"
-                android:layout_height="25dp"/>
+                android:layout_height="25dp"
+                android:src="@mipmap/icon_arrow_down_gray" />
+
             <TextView
-                android:text="收入"
-                android:textSize="19sp"
-                android:textColor="#A9A8AC"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/dat_tv_income"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="收入"
+                android:textColor="#A9A8AC"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:lines="1"
         android:id="@+id/dat_et_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -124,44 +127,52 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/bg_edittext"
         android:hint="请输入类型名称"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
+        android:lines="1"
         android:paddingStart="12dp"
+        android:paddingTop="12dp"
         android:paddingEnd="10dp"
+        android:paddingBottom="12dp"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dat_type" />
 
-
-
-    <ImageView
-        app:layout_constraintTop_toBottomOf="@id/dat_et_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="32dp"
-        android:padding="16dp"
-        app:layout_constraintStart_toStartOf="@id/dat_et_name"
-        android:background="@drawable/bg_edittext"
-        android:id="@+id/dat_iv_close"
-        android:src="@mipmap/icon_close"
-        android:layout_width="50dp"
-        android:layout_height="45dp"/>
-
-    <TextView
-        android:id="@+id/dat_tv_ok"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/bg_button"
-        android:text="确认添加"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:textSize="17sp"
-        app:layout_constraintStart_toEndOf="@id/dat_iv_close"
-        app:layout_constraintEnd_toEndOf="@id/dat_et_name"
-        app:layout_constraintTop_toTopOf="@id/dat_iv_close"
-        app:layout_constraintBottom_toBottomOf="@id/dat_iv_close"
+    <include
+        layout="@layout/dialog_button_action"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dat_et_name" />
+
+    <!--    <ImageView-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/dat_et_name"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:padding="16dp"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/dat_et_name"-->
+    <!--        android:background="@drawable/bg_edittext"-->
+    <!--        android:id="@+id/dat_iv_close"-->
+    <!--        android:src="@mipmap/icon_close"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="45dp"/>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/dat_tv_ok"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:background="@drawable/bg_button"-->
+    <!--        android:text="确认添加"-->
+    <!--        android:textColor="@android:color/white"-->
+    <!--        android:gravity="center"-->
+    <!--        android:textSize="17sp"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/dat_iv_close"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/dat_et_name"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/dat_iv_close"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/dat_iv_close"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

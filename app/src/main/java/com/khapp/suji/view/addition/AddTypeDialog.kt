@@ -16,6 +16,7 @@ import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.utils.Utils
 import kotlinx.android.synthetic.main.dialog_add_type.*
+import kotlinx.android.synthetic.main.dialog_button_action.*
 
 class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
     var tvExpense: TextView? = null
@@ -44,7 +45,7 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
     }
 
     fun setOKListener(onOK: (DataType) -> Unit): AddTypeDialog {
-        dat_tv_ok.setOnClickListener {
+        dialog_ok.setOnClickListener {
             dataName = dat_et_name.text.toString()
             when {
                 dataName.isEmpty() -> {
@@ -81,7 +82,7 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
             }.show()
         }
 
-        dat_iv_close.setOnClickListener {
+        dialog_close.setOnClickListener {
             cancel()
         }
 
