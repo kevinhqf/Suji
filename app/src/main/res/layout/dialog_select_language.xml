@@ -14,7 +14,6 @@
         android:text="选择语言"
         android:textColor="@color/primary_dark"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +49,6 @@
             android:layout_marginBottom="@dimen/setting_dialog_text_margin"
             android:text="简体中文"
             android:textSize="@dimen/setting_dialog_text_size"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/dsl_iv_chinese"
             app:layout_constraintStart_toStartOf="@id/dsl_iv_chinese"
@@ -85,7 +83,6 @@
             android:layout_marginBottom="@dimen/setting_dialog_text_margin"
             android:text="English"
             android:textSize="@dimen/setting_dialog_text_size"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/dsl_iv_english"
             app:layout_constraintStart_toStartOf="@id/dsl_iv_english"

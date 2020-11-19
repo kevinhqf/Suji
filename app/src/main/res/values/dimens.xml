@@ -17,7 +17,7 @@
     <dimen name="default_card_radius">10dp</dimen>
     <dimen name="setting_value_text_size">19sp</dimen>
     <dimen name="setting_dialog_icon_size">55dp</dimen>
-    <dimen name="setting_dialog_text_size">22sp</dimen>
+    <dimen name="setting_dialog_text_size">19sp</dimen>
     <dimen name="setting_dialog_icon_margin">24dp</dimen>
     <dimen name="setting_dialog_text_margin">16dp</dimen>
 </resources>

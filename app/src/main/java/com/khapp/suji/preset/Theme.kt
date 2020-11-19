@@ -1,5 +1,7 @@
 package com.khapp.suji.preset
 
-enum class Theme(val value:Int) {
-    LIGHT(0),DARK(1),AUTO(2)
+import java.io.FileDescriptor
+
+enum class Theme(val description: String,val value:Int) {
+    LIGHT("浅色",0),DARK("深色",1),AUTO("自动",2)
 }

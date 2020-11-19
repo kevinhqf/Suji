@@ -1,9 +1,7 @@
 package com.khapp.suji.view.addition
 
 import android.content.Context
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khapp.suji.R
 import com.khapp.suji.utils.IconSet
@@ -38,7 +36,7 @@ class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Di
     }
 
     private fun initViews() {
-        adapter = IconAdapter(context, IconSet.getIconSet())
+        adapter = IconAdapter(context, IconSet.getDataTypeIconSet())
         dsi_rv_icons.layoutManager = GridLayoutManager(context, 3)
         dsi_rv_icons.adapter = adapter
     }
