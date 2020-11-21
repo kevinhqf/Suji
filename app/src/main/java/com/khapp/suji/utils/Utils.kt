@@ -84,11 +84,13 @@ object Utils {
         return TimeUnit(start, end)
     }
 
+
     fun getFormatMoneyStr(value: Float): String {
         val sign = if (value >= 0) "" else "-"
 
         return "$sign￥${String.format("%,.2f", value).replace("-", "")}"
     }
 }
+
 
 

@@ -61,7 +61,7 @@
         android:paddingTop="@dimen/padding_ver_analysis_time"
         android:paddingEnd="@dimen/padding_hor_analysis_time"
         android:paddingBottom="@dimen/padding_ver_analysis_time"
-        android:text="近一周"
+        android:text="本周"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@id/fa_tv_time2"
@@ -79,7 +79,7 @@
         android:paddingTop="@dimen/padding_ver_analysis_time"
         android:paddingEnd="@dimen/padding_hor_analysis_time"
         android:paddingBottom="@dimen/padding_ver_analysis_time"
-        android:text="近一月"
+        android:text="本月"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/fa_tv_time1"
@@ -99,7 +99,7 @@
         android:paddingTop="@dimen/padding_ver_analysis_time"
         android:paddingEnd="@dimen/padding_hor_analysis_time"
         android:paddingBottom="@dimen/padding_ver_analysis_time"
-        android:text="近一年"
+        android:text="半年"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/fa_tv_time1"
@@ -111,9 +111,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/fa_scrollView"
-        android:fillViewport="true"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,125 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <!--todo 收支概况，两个卡片-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fa_card_income"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:layout_constraintEnd_toStartOf="@id/fa_card_expense"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/fa_tv_income_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:text="本周收入"
+                        android:textColor="@color/primary_red"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/fa_tv_income_currency"
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_income_total_label"
+                        android:text="CNY"
+                        android:textSize="21sp"
+                        android:fontFamily="@font/exo_2_bold"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_income_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/fa_tv_income_total_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:ellipsize="end"
+                        android:gravity="end|bottom"
+                        android:fontFamily="@font/exo_2_bold"
+                        android:lines="2"
+                        android:text="10,000,00.00"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_income_currency"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_income_currency" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fa_card_expense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fa_card_income"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/fa_tv_expense_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:text="本周支出"
+                        android:textColor="@color/primary_green"
+                        android:textSize="17sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/fa_tv_expense_currency"
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_expense_total_label"
+                        android:text="CNY"
+                        android:textSize="21sp"
+                        android:fontFamily="@font/exo_2_bold"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_expense_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/fa_tv_expense_total_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/exo_2_bold"
+                        android:lines="2"
+                        android:text="1,000.00"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="25sp"
+                        android:gravity="end|bottom"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_expense_currency"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_expense_currency" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <!--统计图-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fa_card_graph"
                 android:layout_width="0dp"
@@ -134,7 +252,7 @@
                 app:cardElevation="@dimen/card_elevation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/fa_card_income">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -220,7 +338,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-
+            <!--收支分类-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fa_card_income_classify"
                 android:layout_width="0dp"
