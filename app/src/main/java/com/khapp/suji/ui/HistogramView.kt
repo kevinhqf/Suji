@@ -118,7 +118,10 @@ class HistogramView : View {
         return max
     }
 
-    fun setData(data: ArrayList<Histogram.HistogramData>, itemColors: Array<Int>) {
+    fun setData(
+        data: ArrayList<Histogram.HistogramData>,
+        itemColors: Array<Int> = arrayOf(Color.parseColor("#FF5D5D"), Color.parseColor("#5EDA72"))
+    ) {
         dataSet.clear()
         grid = null
         val startX = 115f
@@ -214,7 +217,6 @@ class HistogramView : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        test()
         grid?.draw(canvas)
         dataSet.forEach {
             it.draw(canvas)

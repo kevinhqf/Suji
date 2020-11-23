@@ -122,7 +122,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--todo 收支概况，两个卡片-->
+            <!-- 收支概况，两个卡片-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fa_card_income"
                 android:layout_width="0dp"
@@ -171,7 +171,7 @@
                         android:gravity="end|bottom"
                         android:fontFamily="@font/exo_2_bold"
                         android:lines="2"
-                        android:text="10,000,00.00"
+                        android:text="0.00"
                         android:textColor="@color/primary_dark"
                         android:textSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -228,7 +228,7 @@
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/exo_2_bold"
                         android:lines="2"
-                        android:text="1,000.00"
+                        android:text="0.00"
                         android:textColor="@color/primary_dark"
                         android:textSize="25sp"
                         android:gravity="end|bottom"
@@ -340,7 +340,7 @@
             </androidx.cardview.widget.CardView>
             <!--收支分类-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/fa_card_income_classify"
+                android:id="@+id/fa_card_statistics_classify"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

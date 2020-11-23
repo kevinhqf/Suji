@@ -8,15 +8,27 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khapp.suji.R
+import com.khapp.suji.data.AnalysisTimeUnit
+import com.khapp.suji.data.NoteType
+import com.khapp.suji.utils.InjectorUtils
+import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.OnMainPageScrollListener
+import com.khapp.suji.viewmodel.TransactionViewModel
+import kotlinx.android.synthetic.main.fragment_analysis.*
 import kotlinx.android.synthetic.main.fragment_analysis.view.*
 
 class AnalysisFragment : Fragment() {
 
     lateinit var classifyAdapter: AnalysisClassifyAdapter
     var scrollListener: OnMainPageScrollListener? = null
+    private val transactionViewModel: TransactionViewModel by activityViewModels {
+        InjectorUtils.provideTransactionViewModelFactory()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,17 +53,39 @@ class AnalysisFragment : Fragment() {
 
     private fun initData(root: View) {
         changeSelectTabState(root.fa_tv_time1, root)
-
-
+        transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
+        transactionViewModel.switchStatisticsType(NoteType.INCOME)
     }
 
     private fun initListener(root: View) {
         root.apply {
-            fa_tv_expense_classify.setOnClickListener { changeSelectClassifyTextState(it as TextView,root) }
-            fa_tv_income_classify.setOnClickListener { changeSelectClassifyTextState(it as TextView,root) }
-            fa_tv_time1.setOnClickListener { changeSelectTabState(it as TextView, root) }
-            fa_tv_time2.setOnClickListener { changeSelectTabState(it as TextView, root) }
-            fa_tv_time3.setOnClickListener { changeSelectTabState(it as TextView, root) }
+            fa_tv_expense_classify.setOnClickListener {
+                transactionViewModel.switchStatisticsType(NoteType.EXPENSE)
+            }
+            fa_tv_income_classify.setOnClickListener {
+                transactionViewModel.switchStatisticsType(NoteType.INCOME)
+            }
+            fa_tv_time1.setOnClickListener {
+                changeSelectTabState(it as TextView, root)
+                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
+                fa_tv_title.text = "本周统计"
+                fa_tv_income_total_label.text = "本周收入"
+                fa_tv_expense_total_label.text = "本周支出"
+            }
+            fa_tv_time2.setOnClickListener {
+                changeSelectTabState(it as TextView, root)
+                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_MONTH)
+                fa_tv_title.text = "本月统计"
+                fa_tv_income_total_label.text = "本月收入"
+                fa_tv_expense_total_label.text = "本月支出"
+            }
+            fa_tv_time3.setOnClickListener {
+                changeSelectTabState(it as TextView, root)
+                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.LATELY_HALF_YEAR)
+                fa_tv_title.text = "半年统计"
+                fa_tv_income_total_label.text = "半年收入"
+                fa_tv_expense_total_label.text = "半年支出"
+            }
             fa_scrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
                 if (scrollY - oldScrollY > 50) {
                     // 向上滑动
@@ -67,6 +101,32 @@ class AnalysisFragment : Fragment() {
     }
 
     private fun initObserver(root: View) {
+        transactionViewModel.analysisOverview.observe(viewLifecycleOwner, Observer {
+            root.apply {
+                fa_tv_income_total_value.text = it.income.toString()
+                fa_tv_expense_total_value.text = it.expense.toString()
+                fa_tv_balance.text = Utils.getFormatMoneyStr(it.total)
+            }
+        })
+        transactionViewModel.analysisTransactions.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrEmpty()) {
+                fa_card_statistics_classify.visibility = View.VISIBLE
+                transactionViewModel.analysisTimeUnitMoney(it)
+                classifyAdapter.statistics(it)
+            } else {
+                fa_card_statistics_classify.visibility = View.INVISIBLE
+            }
+        })
+        transactionViewModel.analysisGraphData.observe(viewLifecycleOwner, Observer {
+            if (it != null)
+                root.fa_hv_data.setData(it)
+        })
+
+        transactionViewModel.statisticsType.observe(viewLifecycleOwner, Observer {
+            val tv = if (it == NoteType.INCOME) fa_tv_income_classify else fa_tv_expense_classify
+            changeSelectClassifyTextState(tv, root)
+            classifyAdapter.switchType(it)
+        })
 
     }
 

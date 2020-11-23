@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             override fun onScrollUp() {
                 if (!isMenuHide) {
                     isMenuHide = true
-                    Log.e("onScrolled: ", "hide")
+                    //Log.e("onScrolled: ", "hide")
                     am_menu.animate().translationY(height).setDuration(400).start()
 
                 }
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             override fun onScrollDown() {
                 if (isMenuHide) {
                     isMenuHide = false
-                    Log.e("onScrolled: ", "show")
+                    //Log.e("onScrolled: ", "show")
                     am_menu.animate().translationY(y).setDuration(300).start()
 
                 }

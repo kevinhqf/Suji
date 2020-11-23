@@ -23,11 +23,16 @@ interface TransactionDao {
     @Query(
         "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid ORDER BY transaction_info.createTime DESC"
     )
-    fun loadTransactionByUid(uid: Long): DataSource.Factory<Int,TransactionInfo>
+    fun loadTransactionByUid(uid: Long): DataSource.Factory<Int, TransactionInfo>
 
     @Query(
         "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid AND transaction_info.createTime BETWEEN :start AND :end"
     )
-    fun getTransactionByTime(uid: Long,start:Long,end:Long):LiveData<List<TransactionInfo>>
+    fun getTransactionByTime(uid: Long, start: Long, end: Long): LiveData<List<TransactionInfo>>
+
+    @Query(
+        "SELECT * FROM transaction_info WHERE transaction_info.uid = :uid AND transaction_info.createTime BETWEEN :start AND :end"
+    )
+    suspend fun getTransactionListByTime(uid: Long, start: Long, end: Long): List<TransactionInfo>
 
 }
