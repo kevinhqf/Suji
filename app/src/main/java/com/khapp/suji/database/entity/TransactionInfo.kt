@@ -16,7 +16,7 @@ data class TransactionInfo(
     @field:SerializedName("address") val address: String = "",
     @field:SerializedName("dataTypeId") val dataTypeId: Int,
     @field:SerializedName("dataTypeName") val dataTypeName: String,
-    @field:SerializedName("dataTypeIcon") val dataTypeIcon: Int,
+    @field:SerializedName("dataTypeIcon") val dataTypeIcon: String,
     @field:SerializedName("dataTypeValue") val dataTypeValue: Int,//类型，收入或支出
     @field:SerializedName("createTime") val createTime: Long = System.currentTimeMillis(),
     @PrimaryKey(autoGenerate = true) @field:SerializedName("id") val id: Long = 0

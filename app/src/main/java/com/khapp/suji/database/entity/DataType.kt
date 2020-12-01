@@ -9,7 +9,7 @@ import com.khapp.suji.utils.Utils
 data class DataType(
     @PrimaryKey(autoGenerate = true) val id: Int=0,
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "icon_id") var icon: Int,
+    @ColumnInfo(name = "iconUrl") var icon: String,
     @ColumnInfo(name = "type") var type: Int,
     @ColumnInfo(name = "uid") var uid: Long,
     @ColumnInfo(name="last_use_time")var lastUseTime:Long=System.currentTimeMillis(),

@@ -7,5 +7,5 @@ object Constance {
     var lat = 0.0
     var lng = 0.0
     var address = ""
-
+    var API_RESOURCES_HOST = "http://106.53.237.34"
 }

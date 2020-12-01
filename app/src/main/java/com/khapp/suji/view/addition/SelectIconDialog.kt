@@ -1,6 +1,7 @@
 package com.khapp.suji.view.addition
 
 import android.content.Context
+import android.graphics.drawable.Icon
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khapp.suji.R
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.dialog_select_icon.*
 
 class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
     lateinit var adapter: IconAdapter
-    var selectedIconId: Int = -1
+    var selectedIconUrl: String = ""
 
     init {
         setContentView(R.layout.dialog_select_icon)
@@ -27,8 +28,8 @@ class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Di
             cancel()
         }
         adapter.selectIconListener = object : IconAdapter.OnSelectIconListener {
-            override fun onSelect(iconId: Int) {
-                selectedIconId = iconId
+            override fun onSelect(iconUrl: String) {
+                selectedIconUrl = iconUrl
 
             }
 
@@ -36,16 +37,17 @@ class SelectIconDialog(context: Context) : BottomSheetDialog(context, R.style.Di
     }
 
     private fun initViews() {
-        adapter = IconAdapter(context, IconSet.getDataTypeIconSet())
+        adapter = IconAdapter(context)
+        adapter.data = IconSet.presetIcons
         dsi_rv_icons.layoutManager = GridLayoutManager(context, 3)
         dsi_rv_icons.adapter = adapter
     }
 
 
-    fun setOKListener(onOK: (Int) -> Unit): SelectIconDialog {
+    fun setOKListener(onOK: (String) -> Unit): SelectIconDialog {
         dialog_ok.setOnClickListener {
-            if (selectedIconId != -1) {
-                onOK.invoke(selectedIconId)
+            if (selectedIconUrl.isNotEmpty()) {
+                onOK.invoke(selectedIconUrl)
                 cancel()
             }else{
                 Utils.toast(context,"请选择图标")

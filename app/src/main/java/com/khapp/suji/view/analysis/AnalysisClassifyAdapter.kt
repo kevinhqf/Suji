@@ -58,6 +58,6 @@ class AnalysisClassifyAdapter(private val context: Context, var type: NoteType =
         }
         notifyDataSetChanged()
     }
-
-    data class StatisticsTransaction(val name:String,val icon:Int,var value:Float)
+    //todo icon修改为url
+    data class StatisticsTransaction(val name:String,val icon:String,var value:Float)
 }

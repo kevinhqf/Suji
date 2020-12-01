@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import com.bumptech.glide.Glide
@@ -26,7 +25,7 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
     var switcher: View? = null
     var dataType = NoteType.EXPENSE
     var dataName: String = ""
-    var dataIcon: Int = -1
+    var dataIconUrl: String = ""
 
     init {
         setContentView(R.layout.dialog_add_type)
@@ -51,11 +50,11 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
                 dataName.isEmpty() -> {
                     Utils.toast(context, "请输入类型名称")
                 }
-                dataIcon == -1 -> {
+                dataIconUrl.isEmpty() -> {
                     Utils.toast(context, "请选择类型图标")
                 }
                 else -> {
-                    onOK(DataType(dataName, dataType, dataIcon))
+                    onOK(DataType(dataName, dataType, dataIconUrl))
                     cancel()
                 }
             }
@@ -76,7 +75,7 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
         dat_iv_pic.setOnClickListener {
             val dialog = SelectIconDialog(context)
             dialog.setOKListener {
-                dataIcon = it
+                dataIconUrl = it
                 Glide.with(context).load(it).into(dat_iv_pic)
 
             }.show()

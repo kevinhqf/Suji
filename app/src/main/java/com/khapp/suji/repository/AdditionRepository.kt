@@ -1,7 +1,10 @@
 package com.khapp.suji.repository
 
 import androidx.lifecycle.LiveData
+import com.khapp.suji.api.API
+import com.khapp.suji.data.ApiResponse
 import com.khapp.suji.data.DbResult
+import com.khapp.suji.data.Resources
 import com.khapp.suji.database.Database
 import com.khapp.suji.database.dao.DataTypeDao
 import com.khapp.suji.database.dao.TransactionDao
@@ -31,5 +34,13 @@ class AdditionRepository(
 
     suspend fun getRecommendTransaction(){
 
+    }
+
+    suspend fun getAllIcons():List<Resources>{
+        val apiCall = apiCall { API.service.getIcons() }
+        if (apiCall.code==0){
+            return apiCall.data!!
+        }
+        return ArrayList()
     }
 }

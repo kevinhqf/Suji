@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-
+        additionViewModel.getAllIcons()
     }
 
 

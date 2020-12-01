@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kevinhqf.app.quicknote.utils.NumPadUtils
 import com.khapp.suji.Constance
+import com.khapp.suji.data.Resources
 import com.khapp.suji.database.entity.DataType
 import com.khapp.suji.database.entity.TransactionInfo
 import com.khapp.suji.repository.AdditionRepository
+import com.khapp.suji.utils.IconSet
 import com.khapp.suji.view.addition.DataTypeAdapter
 import com.khapp.suji.view.comm.BaseViewModel
 
@@ -40,6 +42,13 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
         newDataType.postValue(data)
     }
 
+
+    fun getAllIcons(){
+        launchIO {
+            val allIcons = repository.getAllIcons()
+            IconSet.presetIcons = allIcons
+        }
+    }
 
     fun addTransaction(typeError: () -> Unit, valueError: () -> Unit, completed: () -> Unit) {
         when {

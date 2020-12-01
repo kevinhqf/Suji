@@ -50,6 +50,9 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
     }
 
 
+    fun updateIcon(res: String) {
+        Glide.with(context).load(res).into(da_iv_icon)
+    }
     fun updateIcon(res: Int) {
         Glide.with(context).load(res).into(da_iv_icon)
     }
