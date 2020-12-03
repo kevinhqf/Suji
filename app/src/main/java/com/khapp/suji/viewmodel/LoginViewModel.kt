@@ -100,7 +100,7 @@ class LoginViewModel(private val repository: LoginRepository) : BaseViewModel() 
             launchUI {
                 completed()
                 if (response.code == CODE_SUCCESS) {
-                    saveUser(response.data!!)
+                    repository.saveUserLocal(response.data!!)
                     success()
                 } else {
                     error(response.code, response.msg)
@@ -110,7 +110,7 @@ class LoginViewModel(private val repository: LoginRepository) : BaseViewModel() 
     }
 
     private fun saveUser(user: UserResponse) {
-        launchIO { AppDataStore.saveUserData(user) }
+
     }
 
 

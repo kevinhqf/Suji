@@ -25,6 +25,7 @@
         android:theme="@style/Theme.Suji"
         tools:targetApi="n">
         <activity
+            android:windowSoftInputMode="stateVisible|adjustResize"
             android:name=".view.login.PasswordActivity"
             android:theme="@style/MaterialStyle">
 

@@ -7,5 +7,5 @@ import com.khapp.suji.preset.Theme
 object Config {
     var currency = Currency.CNY
     var language = Language.CHN
-    val theme = Theme.LIGHT
+    var theme = Theme.LIGHT
 }

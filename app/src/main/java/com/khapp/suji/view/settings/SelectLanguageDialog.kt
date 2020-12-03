@@ -1,4 +1,4 @@
-package com.khapp.suji.view.user
+package com.khapp.suji.view.settings
 
 import android.content.Context
 import android.view.View

@@ -17,9 +17,6 @@ class App : Application() {
         super.onCreate()
         instance = this
 
-        GlobalScope.launch(Dispatchers.IO) {
-            AppDataStore.loadUser()
-        }
 
     }
 

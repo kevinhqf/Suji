@@ -1,14 +1,11 @@
 package com.khapp.suji
 
 import android.Manifest
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import com.khapp.suji.data.NoteType
@@ -20,7 +17,7 @@ import com.khapp.suji.view.analysis.AnalysisFragment
 import com.khapp.suji.view.comm.BaseActivity
 import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.home.HomeFragment
-import com.khapp.suji.view.user.UserFragment
+import com.khapp.suji.view.settings.SettingsFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
@@ -38,7 +35,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         const val RC_LOCATION_PHONE_STORAGE: Int = 1
         const val HOME_POSITION = 1
         const val DATA_POSITION = 2
-        const val USER_POSITION = 3
+        const val SETTINGS_POSITION = 3
     }
 
     private val additionViewModel: AdditionViewModel by viewModels {
@@ -55,7 +52,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     private lateinit var additionDialog: AdditionDialog
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
-    private val userFragment = UserFragment.newInstance()
+    private val settingsFragment = SettingsFragment.newInstance()
 
 
     override fun beforeSetContent() {
@@ -65,7 +62,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     override fun lastOnCreate() {
         requestPermissions()
         mainViewModel.changeMenuPosition(intent.getIntExtra(KEY_MENU_POSITION, HOME_POSITION))
-
     }
 
     override fun initData() {
@@ -108,7 +104,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         when (position) {
             HOME_POSITION -> mm_iv_home.setImageResource(R.mipmap.icon_home_active)
             DATA_POSITION -> mm_iv_data.setImageResource(R.mipmap.icon_data_active)
-            USER_POSITION -> mm_iv_user.setImageResource(R.mipmap.icon_user_active)
+            SETTINGS_POSITION -> mm_iv_user.setImageResource(R.mipmap.icon_user_active)
         }
     }
 
@@ -174,7 +170,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             mainViewModel.changeMenuPosition(DATA_POSITION)
         }
         mm_iv_user.setOnClickListener {
-            mainViewModel.changeMenuPosition(USER_POSITION)
+            mainViewModel.changeMenuPosition(SETTINGS_POSITION)
         }
 
 
@@ -197,9 +193,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
                     replace(R.id.am_content, analysisFragment)
                 }
             }
-            USER_POSITION -> {
+            SETTINGS_POSITION -> {
                 supportFragmentManager.commit {
-                    replace(R.id.am_content, userFragment)
+                    replace(R.id.am_content, settingsFragment)
                 }
             }
         }

@@ -1,19 +1,14 @@
 package com.khapp.suji.view.login
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.InputType
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.khapp.suji.*
-import com.khapp.suji.repository.LoginRepository
 import com.khapp.suji.ui.LoadingDialog
 import com.khapp.suji.utils.InjectorUtils
-import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.BaseActivity
 import com.khapp.suji.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_password.*
@@ -57,6 +52,7 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
             switchEditTextInputType()
         }
         ap_tv_tip.text = "密码不少于8位且包含字母和数字"
+        ap_et_password.requestFocus()
     }
 
     override fun initListeners() {
@@ -79,7 +75,7 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
                     ).apply {
                         putExtra(
                             MainActivity.KEY_MENU_POSITION,
-                            MainActivity.USER_POSITION
+                            MainActivity.SETTINGS_POSITION
                         )
                     })
             }, { code, msg ->

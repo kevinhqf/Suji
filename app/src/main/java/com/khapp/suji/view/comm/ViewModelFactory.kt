@@ -34,8 +34,8 @@ class LoginViewModelFactory(private val repository: LoginRepository) :
     }
 }
 
-class MainViewModelFactory() : ViewModelProvider.NewInstanceFactory() {
+class MainViewModelFactory(private val loginRepository: LoginRepository) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel() as T
+        return MainViewModel(loginRepository) as T
     }
 }

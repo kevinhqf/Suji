@@ -21,7 +21,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="Dialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="Dialog" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorPrimary">@color/blue_500</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

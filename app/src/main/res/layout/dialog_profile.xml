@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bg_dialog">
+
+    <ImageView
+        android:id="@+id/dp_iv_avatar"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="32dp"
+        android:src="@mipmap/icon_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dp_change_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_profile_avatar_btn"
+        app:layout_constraintBottom_toBottomOf="@id/dp_iv_avatar"
+        app:layout_constraintEnd_toEndOf="@id/dp_iv_avatar"
+        app:layout_constraintStart_toStartOf="@id/dp_iv_avatar">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/dp_iv_pic"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:src="@mipmap/icon_pic_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="12dp"
+            android:text="更换"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/dp_iv_pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dp_iv_pic"
+            app:layout_constraintTop_toTopOf="@id/dp_iv_pic" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/dp_tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="电话号码"
+        android:textColor="@color/primary_dark"
+        android:textSize="@dimen/profile_text_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_iv_avatar" />
+
+    <EditText
+        android:id="@+id/dp_et_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_edittext"
+        android:enabled="false"
+        android:fontFamily="@font/exo_2_bold"
+        android:padding="12dp"
+        android:text="000-0000-0000"
+        android:textSize="@dimen/profile_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_tv_phone" />
+
+    <TextView
+        android:id="@+id/dp_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="用户名"
+        android:textColor="@color/primary_dark"
+        android:textSize="@dimen/profile_text_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_et_phone" />
+
+    <EditText
+        android:id="@+id/dp_et_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/exo_2_bold"
+        android:lines="1"
+        android:padding="12dp"
+        android:textSize="@dimen/profile_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_tv_name" />
+
+    <TextView
+        android:id="@+id/dp_tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="邮箱"
+        android:textColor="@color/primary_dark"
+        android:textSize="@dimen/profile_text_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_et_name" />
+
+    <EditText
+        android:id="@+id/dp_et_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/exo_2_bold"
+        android:hint="请输入您的邮箱"
+        android:lines="1"
+        android:padding="12dp"
+        android:textColorHint="#C5C5CA"
+        android:textSize="@dimen/profile_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_tv_email" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dp_btn_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/login_btn_margin"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/login_btn_margin"
+        android:layout_marginBottom="@dimen/login_btn_margin"
+        android:paddingTop="@dimen/login_btn_padding"
+        android:paddingBottom="@dimen/login_btn_padding"
+        android:text="保 存"
+        android:textSize="@dimen/login_btn_text_size"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/login_btn_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dp_et_email" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
