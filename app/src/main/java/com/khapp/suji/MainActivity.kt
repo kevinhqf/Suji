@@ -2,6 +2,7 @@ package com.khapp.suji
 
 import android.Manifest
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import com.khapp.suji.utils.LocationUtils
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.view.addition.AdditionDialog
 import com.khapp.suji.view.analysis.AnalysisFragment
+import com.khapp.suji.view.comm.BaseActivity
 import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.home.HomeFragment
 import com.khapp.suji.view.user.UserFragment
@@ -29,8 +31,9 @@ import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity(R.layout.activity_main) {
     companion object {
+        const val KEY_MENU_POSITION = "menu_position"
         const val RC_LOCATION_PHONE_STORAGE: Int = 1
         const val HOME_POSITION = 1
         const val DATA_POSITION = 2
@@ -49,18 +52,20 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
     private val userFragment = UserFragment.newInstance()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        initData()
-        initViews()
-        initListeners()
-        initObservers()
-        requestPermissions()
+    private var position = HOME_POSITION
+
+    override fun beforeSetContent() {
+
     }
 
-    private fun initData() {
+    override fun lastOnCreate() {
+        requestPermissions()
+
+    }
+
+    override fun initData() {
         additionViewModel.getAllIcons()
+        position = intent.getIntExtra(KEY_MENU_POSITION, HOME_POSITION)
     }
 
 
@@ -103,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
         additionViewModel.newValues.observe(this, Observer {
             additionDialog.updateMoneyValue(it)
         })
@@ -123,7 +128,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     var isMenuHide = false
-    private fun initListeners() {
+    override fun initListeners() {
         additionDialog.initListeners(additionViewModel)
         mm_add.setOnClickListener {
             additionDialog.show()
@@ -167,11 +172,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun initViews() {
+    override fun initViews() {
         additionDialog = AdditionDialog(this)
-        supportFragmentManager.commit {
-            replace(R.id.am_content, homeFragment)
-        }
+        changeFragment(position)
     }
 
     private fun changeFragment(position: Int) {
@@ -192,6 +195,14 @@ class MainActivity : AppCompatActivity() {
                     replace(R.id.am_content, userFragment)
                 }
             }
+        }
+
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        intent?.let {
+            position = it.getIntExtra(KEY_MENU_POSITION, HOME_POSITION)
         }
 
     }

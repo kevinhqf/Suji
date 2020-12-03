@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:text="停车费 ￥8"
             app:chipEndPadding="@dimen/chip_padding"
-            app:chipIcon="@mipmap/icon_preset_parking"
             app:chipIconVisible="true"
             app:chipStartPadding="@dimen/chip_padding" />
 
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="游戏手柄 ￥380"
             app:chipEndPadding="@dimen/chip_padding"
-            app:chipIcon="@mipmap/icon_preset_entertainment"
+            app:chipIcon="@mipmap/icon_pic"
             app:chipIconVisible="true"
             app:chipStartPadding="@dimen/chip_padding" />
 
@@ -42,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="加油 ￥200"
             app:chipEndPadding="@dimen/chip_padding"
-            app:chipIcon="@mipmap/icon_preset_car_gas_station"
+            app:chipIcon="@mipmap/icon_pic"
             app:chipIconVisible="true"
             app:chipStartPadding="@dimen/chip_padding" />
 
@@ -54,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="高速费用 ￥8"
             app:chipEndPadding="@dimen/chip_padding"
-            app:chipIcon="@mipmap/icon_preset_transport_car"
+            app:chipIcon="@mipmap/icon_pic"
             app:chipIconVisible="true"
             app:chipStartPadding="@dimen/chip_padding" />
     </com.google.android.material.chip.ChipGroup>

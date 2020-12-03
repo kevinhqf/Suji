@@ -22,7 +22,6 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:src="@mipmap/icon_preset_entertainment"
         app:layout_constraintEnd_toEndOf="@id/it_tv_title"
         app:layout_constraintStart_toStartOf="@id/it_tv_title"
         app:layout_constraintTop_toTopOf="parent" />

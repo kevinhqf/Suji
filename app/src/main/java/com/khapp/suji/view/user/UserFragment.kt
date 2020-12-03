@@ -1,12 +1,15 @@
 package com.khapp.suji.view.user
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.khapp.suji.Config
+import com.khapp.suji.Constance
 import com.khapp.suji.R
+import com.khapp.suji.view.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_user.view.*
 
 class UserFragment : Fragment() {
@@ -65,6 +68,10 @@ class UserFragment : Fragment() {
             }
             fu_item_logout.setOnClickListener {
 
+            }
+            fu_iv_user_icon.setOnClickListener {
+                if (Constance.userId == -1L)
+                    startActivity(Intent(requireContext(), LoginActivity::class.java))
             }
         }
     }
