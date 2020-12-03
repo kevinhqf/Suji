@@ -1,7 +1,7 @@
 package com.khapp.suji.data
 
 data class UserResponse(
-    val id: Int,
+    val id: Long,
     val phone: String = "",
     var name: String = "",
     var avatar: String = "",

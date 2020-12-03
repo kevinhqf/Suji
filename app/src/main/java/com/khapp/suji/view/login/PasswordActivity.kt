@@ -1,6 +1,7 @@
 package com.khapp.suji.view.login
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -8,10 +9,7 @@ import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
-import com.khapp.suji.CODE_USER_LOGIN
-import com.khapp.suji.CODE_USER_SIGNUP
-import com.khapp.suji.MainActivity
-import com.khapp.suji.R
+import com.khapp.suji.*
 import com.khapp.suji.repository.LoginRepository
 import com.khapp.suji.ui.LoadingDialog
 import com.khapp.suji.utils.InjectorUtils
@@ -57,10 +55,8 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
             if (code == CODE_USER_LOGIN) "登 录" else if (code == CODE_USER_SIGNUP) "注 册" else ""
         if (code == CODE_USER_SIGNUP) {
             switchEditTextInputType()
-            ap_tv_tip.text = "密码不少于8位且包含字母和数字"
-        } else {
-            ap_tv_tip.text = ""
         }
+        ap_tv_tip.text = "密码不少于8位且包含字母和数字"
     }
 
     override fun initListeners() {
@@ -86,9 +82,19 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
                             MainActivity.USER_POSITION
                         )
                     })
-            }, { _, msg -> Utils.toast(this, msg) }) { loading.dismiss() }
+            }, { code, msg ->
+                if (code == CODE_ERROR_USER_WRONG_PASSWORD) {
+                    setTip("密码错误")
+                } else {
+                    setTip(msg)
+                }
+            }) { loading.dismiss() }
         }
 
+    }
+
+    private fun setTip(tip: String) {
+        ap_tv_tip.text = tip
     }
 
     private fun switchEditTextInputType() {
@@ -109,6 +115,9 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
     override fun initObservers() {
         loginViewMode.passwordValid.observe(this, Observer {
             ap_btn_ok.isEnabled = it
+            if (it==false){
+                setTip("密码不少于8位且包含字母和数字")
+            }
         })
     }
 

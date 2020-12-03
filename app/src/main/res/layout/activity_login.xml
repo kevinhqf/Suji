@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:text="输入您的\n手机号码"
+        android:text="输入您的\n11 位手机号码"
         android:textColor="#232127"
         android:textSize="50sp"
         android:textStyle="bold"

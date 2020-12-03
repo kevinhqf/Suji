@@ -7,6 +7,7 @@ import com.khapp.suji.CODE_USER_SIGNUP
 import com.khapp.suji.Constance
 import com.khapp.suji.api.API
 import com.khapp.suji.data.UserResponse
+import com.khapp.suji.datastore.AppDataStore
 import com.khapp.suji.repository.LoginRepository
 import com.khapp.suji.view.comm.BaseViewModel
 
@@ -109,8 +110,7 @@ class LoginViewModel(private val repository: LoginRepository) : BaseViewModel() 
     }
 
     private fun saveUser(user: UserResponse) {
-        Constance.user = user
-        Constance.userId = user.id.toLong()
+        launchIO { AppDataStore.saveUserData(user) }
     }
 
 

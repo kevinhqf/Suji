@@ -22,6 +22,7 @@ import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.home.HomeFragment
 import com.khapp.suji.view.user.UserFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
+import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
 import com.tencent.map.geolocation.TencentLocation
 import com.tencent.map.geolocation.TencentLocationListener
@@ -47,12 +48,15 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         InjectorUtils.provideTransactionViewModelFactory()
     }
 
+    private val mainViewModel: MainViewModel by viewModels {
+        InjectorUtils.provideMainViewModelFactory()
+    }
 
     private lateinit var additionDialog: AdditionDialog
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
     private val userFragment = UserFragment.newInstance()
-    private var position = HOME_POSITION
+
 
     override fun beforeSetContent() {
 
@@ -60,12 +64,12 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun lastOnCreate() {
         requestPermissions()
+        mainViewModel.changeMenuPosition(intent.getIntExtra(KEY_MENU_POSITION, HOME_POSITION))
 
     }
 
     override fun initData() {
         additionViewModel.getAllIcons()
-        position = intent.getIntExtra(KEY_MENU_POSITION, HOME_POSITION)
     }
 
 
@@ -125,6 +129,10 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             }
         })
 
+        mainViewModel.menuPosition.observe(this, Observer {
+            changeFragment(it)
+        })
+
     }
 
     var isMenuHide = false
@@ -160,13 +168,13 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         homeFragment.scrollListener = scrollListener
         analysisFragment.scrollListener = scrollListener
         mm_iv_home.setOnClickListener {
-            changeFragment(HOME_POSITION)
+            mainViewModel.changeMenuPosition(HOME_POSITION)
         }
         mm_iv_data.setOnClickListener {
-            changeFragment(DATA_POSITION)
+            mainViewModel.changeMenuPosition(DATA_POSITION)
         }
         mm_iv_user.setOnClickListener {
-            changeFragment(USER_POSITION)
+            mainViewModel.changeMenuPosition(USER_POSITION)
         }
 
 
@@ -174,7 +182,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
     override fun initViews() {
         additionDialog = AdditionDialog(this)
-        changeFragment(position)
     }
 
     private fun changeFragment(position: Int) {
@@ -202,7 +209,12 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         intent?.let {
-            position = it.getIntExtra(KEY_MENU_POSITION, HOME_POSITION)
+            mainViewModel.changeMenuPosition(
+                it.getIntExtra(
+                    KEY_MENU_POSITION,
+                    mainViewModel.menuPosition.value!!
+                )
+            )
         }
 
     }
