@@ -7,6 +7,7 @@
     android:background="@drawable/bg_dialog">
 
     <ImageView
+        android:background="@drawable/bg_avatar"
         android:id="@+id/dp_iv_avatar"
         android:layout_width="170dp"
         android:layout_height="170dp"

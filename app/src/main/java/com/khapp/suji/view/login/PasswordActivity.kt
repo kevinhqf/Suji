@@ -10,7 +10,7 @@ import com.khapp.suji.*
 import com.khapp.suji.ui.LoadingDialog
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.view.comm.BaseActivity
-import com.khapp.suji.viewmodel.LoginViewModel
+import com.khapp.suji.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_password.*
 import kotlinx.android.synthetic.main.widget_back.*
 
@@ -23,8 +23,8 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
 
     var phone: String = ""
     var code: Int = -1
-    private val loginViewMode: LoginViewModel by viewModels {
-        InjectorUtils.provideLoginViewModelFactory()
+    private val userViewMode: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory()
     }
     var canSee = false
     private lateinit var loading: LoadingDialog
@@ -61,12 +61,12 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
         }
         iv_back.setOnClickListener { onBackPressed() }
         ap_et_password.addTextChangedListener {
-            loginViewMode.checkPasswordValid(it.toString())
+            userViewMode.checkPasswordValid(it.toString())
         }
 
         ap_btn_ok.setOnClickListener {
             loading.show()
-            loginViewMode.passwordAction(phone, ap_et_password.editableText.toString(), code, {
+            userViewMode.passwordAction(phone, ap_et_password.editableText.toString(), code, {
                 // 跳转个人页
                 startActivity(
                     Intent(
@@ -109,7 +109,7 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
     }
 
     override fun initObservers() {
-        loginViewMode.passwordValid.observe(this, Observer {
+        userViewMode.passwordValid.observe(this, Observer {
             ap_btn_ok.isEnabled = it
             if (it==false){
                 setTip("密码不少于8位且包含字母和数字")

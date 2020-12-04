@@ -35,7 +35,7 @@ class IconAdapter(val context: Context) :
         }
         holder.itemView.setOnFocusChangeListener { view, b ->
             if (b) {
-                selectIconListener?.onSelect(data[position].getUrl())
+                selectIconListener?.onSelect(data[position])
                 holder.itemView.ii_select_bg.visibility = View.VISIBLE
             } else {
                 holder.itemView.ii_select_bg.visibility = View.INVISIBLE
@@ -46,6 +46,6 @@ class IconAdapter(val context: Context) :
     }
 
     interface OnSelectIconListener {
-        fun onSelect(iconUrl: String)
+        fun onSelect(icon: Resources)
     }
 }

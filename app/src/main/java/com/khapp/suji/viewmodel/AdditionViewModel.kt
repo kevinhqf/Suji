@@ -43,11 +43,12 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
     }
 
 
-    fun getAllIcons(){
-        launchIO {
-            val allIcons = repository.getAllIcons()
-            IconSet.presetIcons = allIcons
-        }
+    fun getAllIcons() {
+        if (IconSet.presetIcons.isEmpty())
+            launchIO {
+                val allIcons = repository.getAllIcons()
+                IconSet.presetIcons = allIcons
+            }
     }
 
     fun addTransaction(typeError: () -> Unit, valueError: () -> Unit, completed: () -> Unit) {

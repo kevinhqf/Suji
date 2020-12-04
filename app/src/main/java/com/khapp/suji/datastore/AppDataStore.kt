@@ -21,21 +21,25 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.io.IOException
+
 //todo 暂时不用
 class AppDataStore(val context: Context) {
     private val dataStore: DataStore<Preferences> = context.createDataStore("suji_data")
 
-    private val USER_ID = preferencesKey<Long>("user_id")
-    private val USER_NAME = preferencesKey<String>("user_name")
-    private val USER_PHONE = preferencesKey<String>("user_phone")
-    private val USER_EMAIL = preferencesKey<String>("user_email")
-    private val USER_AVATAR_URL = preferencesKey<String>("user_avatar_url")
-    private val USER_TOKEN = preferencesKey<String>("user_token")
+    companion object {
+        private val USER_ID = preferencesKey<Long>("user_id")
+        private val USER_NAME = preferencesKey<String>("user_name")
+        private val USER_PHONE = preferencesKey<String>("user_phone")
+        private val USER_EMAIL = preferencesKey<String>("user_email")
+        private val USER_AVATAR_URL = preferencesKey<String>("user_avatar_url")
+        private val USER_TOKEN = preferencesKey<String>("user_token")
 
 
-    private val CONFIG_THEME = preferencesKey<String>("config_theme")
-    private val CONFIG_LANGUAGE = preferencesKey<String>("config_language")
-    private val CONFIG_CURRENCY = preferencesKey<String>("config_currency")
+        private val CONFIG_THEME = preferencesKey<String>("config_theme")
+        private val CONFIG_LANGUAGE = preferencesKey<String>("config_language")
+        private val CONFIG_CURRENCY = preferencesKey<String>("config_currency")
+    }
+
 
     suspend fun saveConfig(theme: Theme, language: Language, currency: Currency) {
         Config.theme = theme

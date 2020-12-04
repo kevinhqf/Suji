@@ -13,4 +13,6 @@ class LoadingDialog(context: Context) : Dialog(context, R.style.Dialog) {
     }
 
 
+
+
 }

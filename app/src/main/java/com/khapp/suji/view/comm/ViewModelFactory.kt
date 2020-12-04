@@ -3,10 +3,10 @@ package com.khapp.suji.view.comm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.khapp.suji.repository.AdditionRepository
-import com.khapp.suji.repository.LoginRepository
+import com.khapp.suji.repository.UserRepository
 import com.khapp.suji.repository.TransactionRepository
 import com.khapp.suji.viewmodel.AdditionViewModel
-import com.khapp.suji.viewmodel.LoginViewModel
+import com.khapp.suji.viewmodel.UserViewModel
 import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
 
@@ -26,16 +26,16 @@ class TransactionViewModelFactory(private val repository: TransactionRepository)
     }
 }
 
-class LoginViewModelFactory(private val repository: LoginRepository) :
+class UserViewModelFactory(private val repository: UserRepository) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginViewModel(repository) as T
+        return UserViewModel(repository) as T
     }
 }
 
-class MainViewModelFactory(private val loginRepository: LoginRepository) : ViewModelProvider.NewInstanceFactory() {
+class MainViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(loginRepository) as T
+        return MainViewModel(userRepository) as T
     }
 }

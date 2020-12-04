@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.khapp.suji.R
 import com.khapp.suji.data.DataType
 import com.khapp.suji.data.NoteType
+import com.khapp.suji.utils.IconSet
 import com.khapp.suji.utils.ScreenUtils
 import com.khapp.suji.utils.Utils
 import kotlinx.android.synthetic.main.dialog_add_type.*
@@ -73,10 +74,10 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
 
         }
         dat_iv_pic.setOnClickListener {
-            val dialog = SelectIconDialog(context)
+            val dialog = SelectIconDialog(context, IconSet.presetIcons)
             dialog.setOKListener {
-                dataIconUrl = it
-                Glide.with(context).load(it).into(dat_iv_pic)
+                dataIconUrl = it.getUrl()
+                Glide.with(context).load(dataIconUrl).into(dat_iv_pic)
 
             }.show()
         }

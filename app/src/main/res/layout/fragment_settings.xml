@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:background="@drawable/bg_avatar"
         android:id="@+id/fs_iv_user_icon"
         android:layout_width="88dp"
         android:layout_height="88dp"

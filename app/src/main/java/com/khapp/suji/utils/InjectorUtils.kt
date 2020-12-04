@@ -4,13 +4,12 @@ import com.khapp.suji.App
 import com.khapp.suji.database.Database
 import com.khapp.suji.datastore.AppDataStore
 import com.khapp.suji.repository.AdditionRepository
-import com.khapp.suji.repository.LoginRepository
+import com.khapp.suji.repository.UserRepository
 import com.khapp.suji.repository.TransactionRepository
 import com.khapp.suji.view.comm.AdditionViewModelFactory
-import com.khapp.suji.view.comm.LoginViewModelFactory
+import com.khapp.suji.view.comm.UserViewModelFactory
 import com.khapp.suji.view.comm.MainViewModelFactory
 import com.khapp.suji.view.comm.TransactionViewModelFactory
-import com.khapp.suji.viewmodel.TransactionViewModel
 
 object InjectorUtils {
     //保证dataStore是同一个对象
@@ -24,14 +23,14 @@ object InjectorUtils {
             TransactionRepository(Database.transactionDao)
         )
 
-    fun provideLoginViewModelFactory(): LoginViewModelFactory = LoginViewModelFactory(
-        LoginRepository(
+    fun provideUserViewModelFactory(): UserViewModelFactory = UserViewModelFactory(
+        UserRepository(
             dataStore
         )
     )
 
     fun provideMainViewModelFactory(): MainViewModelFactory = MainViewModelFactory(
-        LoginRepository(
+        UserRepository(
             dataStore
         )
     )
