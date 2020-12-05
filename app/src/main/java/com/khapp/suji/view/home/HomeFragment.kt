@@ -14,6 +14,7 @@ import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.viewmodel.TransactionViewModel
+import com.khapp.suji.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.overview_home.view.*
 
@@ -26,6 +27,10 @@ class HomeFragment : Fragment() {
         InjectorUtils.provideTransactionViewModelFactory()
     }
 
+    private val userViewModel: UserViewModel by activityViewModels {
+        InjectorUtils.provideUserViewModelFactory()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +39,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObserver(root: View) {
-
+        userViewModel.user.observe(viewLifecycleOwner, Observer {
+            transactionViewModel.switchUser(it.id)
+        })
         transactionViewModel.transactionList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             root.postDelayed({

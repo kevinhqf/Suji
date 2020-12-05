@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.khapp.suji.Config
 import com.khapp.suji.Constance
 import com.khapp.suji.R
+import com.khapp.suji.ui.AppAlertDialog
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.view.login.LoginActivity
 import com.khapp.suji.viewmodel.MainViewModel
@@ -27,9 +28,7 @@ class SettingsFragment : Fragment() {
     var languageDialog: SelectLanguageDialog? = null
     var themeDialog: SelectThemeDialog? = null
     var profileDialog: UserProfileDialog? = null
-    private val mainViewModel: MainViewModel by activityViewModels {
-        InjectorUtils.provideMainViewModelFactory()
-    }
+
 
     private val userViewModel: UserViewModel by activityViewModels {
         InjectorUtils.provideUserViewModelFactory()
@@ -85,10 +84,17 @@ class SettingsFragment : Fragment() {
             fs_item_about.setOnClickListener {
 
             }
+            //退出登录
             fs_item_logout.setOnClickListener {
-                if (Constance.userId != -1L)
-                    userViewModel.logout()
+                if (Constance.userId != -1L) {
+                    AppAlertDialog(requireContext())
+                        .message("确定要退出登录吗?")
+                        .ok("确定") { userViewModel.logout() }
+                        .show()
+
+                }
             }
+            //个人设置
             fs_iv_user_icon.setOnClickListener {
                 if (Constance.userId == -1L) {
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
@@ -106,7 +112,9 @@ class SettingsFragment : Fragment() {
                 if (it.id == -1L) {
                     fs_tv_user_name.text = "请登录"
                     fs_iv_user_icon.setImageResource(R.mipmap.icon_user)
+                    fs_setting_logout.visibility = View.INVISIBLE
                 } else {
+                    fs_setting_logout.visibility = View.VISIBLE
                     fs_tv_user_name.text = it.name
                     Glide.with(requireContext())
                         .load(it.getAvatarUrl())

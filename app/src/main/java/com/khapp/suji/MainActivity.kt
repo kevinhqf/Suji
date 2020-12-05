@@ -21,6 +21,7 @@ import com.khapp.suji.view.settings.SettingsFragment
 import com.khapp.suji.viewmodel.AdditionViewModel
 import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
+import com.khapp.suji.viewmodel.UserViewModel
 import com.tencent.map.geolocation.TencentLocation
 import com.tencent.map.geolocation.TencentLocationListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,17 +39,19 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         const val SETTINGS_POSITION = 3
     }
 
-    private val additionViewModel: AdditionViewModel by viewModels {
-        InjectorUtils.provideAdditionViewModelFactory()
-    }
-    private val transactionViewModel: TransactionViewModel by viewModels {
-        InjectorUtils.provideTransactionViewModelFactory()
-    }
+
 
     private val mainViewModel: MainViewModel by viewModels {
         InjectorUtils.provideMainViewModelFactory()
     }
 
+
+    private val additionViewModel: AdditionViewModel by viewModels {
+        InjectorUtils.provideAdditionViewModelFactory()
+    }
+    private val userViewModel: UserViewModel by viewModels {
+        InjectorUtils.provideUserViewModelFactory()
+    }
     private lateinit var additionDialog: AdditionDialog
     private val homeFragment = HomeFragment.newInstance()
     private val analysisFragment = AnalysisFragment.newInstance()
@@ -109,6 +112,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     }
 
     override fun initObservers() {
+        userViewModel.user.observe(this, Observer {
+            additionViewModel.switchUser(it.id)
+        })
         additionViewModel.newValues.observe(this, Observer {
             additionDialog.updateMoneyValue(it)
         })
@@ -128,7 +134,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         mainViewModel.menuPosition.observe(this, Observer {
             changeFragment(it)
         })
-
     }
 
     var isMenuHide = false

@@ -84,7 +84,6 @@ class AppDataStore(val context: Context) {
             throw it
         }
     }.map {
-        Log.e("loadUser: ", "id=${it[USER_ID]}")
         val u = UserResponse(
             it[USER_ID] ?: -1L,
             it[USER_PHONE] ?: "",

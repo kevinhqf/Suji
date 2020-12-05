@@ -21,4 +21,5 @@
     <color name="primary_red">#FF5D5D</color>
     <color name="primary_green">#5EDA72</color>
     <color name="numpad2_num">#1E1D23</color>
+    <color name="text_btn_bg">#0D000000</color>
 </resources>

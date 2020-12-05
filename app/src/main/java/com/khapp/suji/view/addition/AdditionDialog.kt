@@ -57,7 +57,7 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
         Glide.with(context).load(res).into(da_iv_icon)
     }
 
-
+    //todo 添加类型无显示
     fun initListeners(vm: AdditionViewModel) {
         typeAdapter.onDataTypeSelectListener = object : DataTypeAdapter.OnDataTypeSelectListener {
             override fun onSelect(data: DataType) {

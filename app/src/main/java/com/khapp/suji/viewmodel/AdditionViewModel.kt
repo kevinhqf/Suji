@@ -2,6 +2,8 @@ package com.khapp.suji.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
+import androidx.lifecycle.Transformations.switchMap
 import com.kevinhqf.app.quicknote.utils.NumPadUtils
 import com.khapp.suji.Constance
 import com.khapp.suji.data.Resources
@@ -13,17 +15,31 @@ import com.khapp.suji.view.addition.DataTypeAdapter
 import com.khapp.suji.view.comm.BaseViewModel
 
 class AdditionViewModel(private val repository: AdditionRepository) : BaseViewModel() {
+    private val userId = MutableLiveData<Long>()
+
+    /**
+     * 要添加的值
+     */
     val newValues: MutableLiveData<String> by lazy {
         MutableLiveData<String>("0")
     }
-    val dataTypes: LiveData<List<DataType>>
-        get() {
-            return repository.loadDataTypeByUid(Constance.userId)
-        }
 
+    /**
+     * 类型列表
+     */
+    val dataTypes = switchMap(map(userId) {
+        repository.loadDataTypeByUid(Constance.userId)
+    }){it}
+
+
+    /**
+     * 要添加的类型
+     */
     val newDataType: MutableLiveData<DataType> = MutableLiveData()
 
-
+    /**
+     * 添加记账类型
+     */
     fun addDataType(data: DataType, sameContentInfo: DataTypeAdapter.SameContentInfo) {
         launchIO {
             //添加记账类型时检查是否已存在相同的类型，如果有则更新使用时间，让其排序靠前，如没有则添加
@@ -36,6 +52,10 @@ class AdditionViewModel(private val repository: AdditionRepository) : BaseViewMo
                 repository.addDataType(data)
             }
         }
+    }
+
+    fun switchUser(uid:Long){
+        userId.postValue(uid)
     }
 
     fun setNewDataType(data: DataType) {

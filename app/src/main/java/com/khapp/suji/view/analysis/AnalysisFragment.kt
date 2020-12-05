@@ -54,17 +54,19 @@ class AnalysisFragment : Fragment() {
     private fun initData(root: View) {
         changeSelectTabState(root.fa_tv_time1, root)
         transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
-        transactionViewModel.switchStatisticsType(NoteType.INCOME)
+
     }
 
     private fun initListener(root: View) {
         root.apply {
+            //切换收入支出分类卡片
             fa_tv_expense_classify.setOnClickListener {
-                transactionViewModel.switchStatisticsType(NoteType.EXPENSE)
+                transactionViewModel.switchStatisticsType()
             }
             fa_tv_income_classify.setOnClickListener {
-                transactionViewModel.switchStatisticsType(NoteType.INCOME)
+                transactionViewModel.switchStatisticsType()
             }
+
             fa_tv_time1.setOnClickListener {
                 changeSelectTabState(it as TextView, root)
                 transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
@@ -113,6 +115,9 @@ class AnalysisFragment : Fragment() {
                 fa_card_statistics_classify.visibility = View.VISIBLE
                 transactionViewModel.analysisTimeUnitMoney(it)
                 classifyAdapter.statistics(it)
+                if (it.none { item -> item.dataTypeValue == transactionViewModel.getStatisticsNoteType().value }) {
+                    transactionViewModel.switchStatisticsType()
+                }
             } else {
                 fa_card_statistics_classify.visibility = View.INVISIBLE
             }
@@ -123,6 +128,7 @@ class AnalysisFragment : Fragment() {
         })
 
         transactionViewModel.statisticsType.observe(viewLifecycleOwner, Observer {
+            //切换分类类型
             val tv = if (it == NoteType.INCOME) fa_tv_income_classify else fa_tv_expense_classify
             changeSelectClassifyTextState(tv, root)
             classifyAdapter.switchType(it)
