@@ -130,8 +130,8 @@
                 android:layout_margin="16dp"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:cardElevation="@dimen/card_elevation"
-                app:layout_constraintEnd_toStartOf="@id/fa_card_expense"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fa_card_expense"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -149,31 +149,32 @@
                         android:textSize="17sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                        android:layout_marginTop="8dp"
                         android:id="@+id/fa_tv_income_currency"
-                        app:layout_constraintStart_toStartOf="@id/fa_tv_income_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/exo_2_bold"
                         android:text="CNY"
                         android:textSize="21sp"
-                        android:fontFamily="@font/exo_2_bold"
-                        app:layout_constraintTop_toBottomOf="@id/fa_tv_income_total_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_income_total_label"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_income_total_label" />
 
                     <TextView
                         android:id="@+id/fa_tv_income_total_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:ellipsize="end"
-                        android:gravity="end|bottom"
                         android:fontFamily="@font/exo_2_bold"
+                        android:gravity="end|bottom"
                         android:lines="2"
                         android:text="0.00"
                         android:textColor="@color/primary_dark"
-                        android:textSize="25sp"
+                        android:textSize="19sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/fa_tv_income_currency"
@@ -190,8 +191,8 @@
                 android:layout_margin="16dp"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:cardElevation="@dimen/card_elevation"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/fa_card_income"
+                app:layout_constraintEnd_toStartOf="@id/fa_card_income"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,29 +210,31 @@
                         android:textSize="17sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                        android:layout_marginTop="8dp"
                         android:id="@+id/fa_tv_expense_currency"
-                        app:layout_constraintStart_toStartOf="@id/fa_tv_expense_total_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/exo_2_bold"
                         android:text="CNY"
                         android:textSize="21sp"
-                        android:fontFamily="@font/exo_2_bold"
-                        app:layout_constraintTop_toBottomOf="@id/fa_tv_expense_total_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        app:layout_constraintStart_toStartOf="@id/fa_tv_expense_total_label"
+                        app:layout_constraintTop_toBottomOf="@id/fa_tv_expense_total_label" />
+
                     <TextView
                         android:id="@+id/fa_tv_expense_total_value"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/exo_2_bold"
+                        android:gravity="end|bottom"
                         android:lines="2"
                         android:text="0.00"
                         android:textColor="@color/primary_dark"
-                        android:textSize="25sp"
-                        android:gravity="end|bottom"
+                        android:textSize="19sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/fa_tv_expense_currency"
@@ -361,25 +364,23 @@
                         android:id="@+id/fa_tv_income_classify"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/bg_text_selected"
+                        android:layout_marginStart="16dp"
                         android:paddingStart="16dp"
                         android:paddingTop="3dp"
                         android:paddingEnd="16dp"
                         android:paddingBottom="3dp"
                         android:text="收入"
-                        android:textColor="@color/blue_500"
+                        android:textColor="@color/gray_600"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toEndOf="@id/fa_tv_expense_classify"
+                        app:layout_constraintTop_toTopOf="@id/fa_tv_expense_classify" />
 
                     <TextView
-
                         android:id="@+id/fa_tv_expense_classify"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
                         android:background="@null"
                         android:paddingStart="16dp"
                         android:paddingTop="3dp"
@@ -388,8 +389,8 @@
                         android:text="支出"
                         android:textColor="@color/gray_600"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toEndOf="@id/fa_tv_income_classify"
-                        app:layout_constraintTop_toTopOf="@id/fa_tv_income_classify" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/fa_rv_classify"

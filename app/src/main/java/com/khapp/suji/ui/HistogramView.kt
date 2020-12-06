@@ -124,7 +124,7 @@ class HistogramView : View {
     ) {
         dataSet.clear()
         grid = null
-        val startX = 115f
+        val startX = 65f
         val startY = height - 50f
 
         val histogram = Histogram(startX, startY, data[0]).let { h ->

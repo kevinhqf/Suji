@@ -1,5 +1,6 @@
 package com.khapp.suji.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations.map
@@ -37,7 +38,7 @@ class TransactionViewModel(private val repository: TransactionRepository) : Base
     var analysisTimeUnit: AnalysisTimeUnit = AnalysisTimeUnit.THIS_WEEK
 
     //统计页账单列表
-    val statisticsType = MutableLiveData<NoteType>(NoteType.INCOME)
+    val statisticsType = MutableLiveData<NoteType>(NoteType.EXPENSE)
 
     /**
      * 切换统计页的时间单位
@@ -67,6 +68,7 @@ class TransactionViewModel(private val repository: TransactionRepository) : Base
      * 获取当前统计分类的类型
      */
     fun getStatisticsNoteType(): NoteType {
+        //Log.e("getStatisticsNoteType: ", "${statisticsType.value!!}")
         return statisticsType.value!!
     }
 

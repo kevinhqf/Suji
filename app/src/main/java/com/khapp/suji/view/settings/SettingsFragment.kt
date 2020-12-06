@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -14,9 +15,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.khapp.suji.Config
 import com.khapp.suji.Constance
+import com.khapp.suji.MainActivity
 import com.khapp.suji.R
 import com.khapp.suji.ui.AppAlertDialog
 import com.khapp.suji.utils.InjectorUtils
+import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.login.LoginActivity
 import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.UserViewModel
@@ -28,7 +31,7 @@ class SettingsFragment : Fragment() {
     var languageDialog: SelectLanguageDialog? = null
     var themeDialog: SelectThemeDialog? = null
     var profileDialog: UserProfileDialog? = null
-
+    var scrollListener: OnMainPageScrollListener? = null
 
     private val userViewModel: UserViewModel by activityViewModels {
         InjectorUtils.provideUserViewModelFactory()
@@ -100,6 +103,16 @@ class SettingsFragment : Fragment() {
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
                 } else {
                     profileDialog?.show()
+                }
+            }
+            //滑动监听
+            fs_scrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
+                if (scrollY - oldScrollY > MainActivity.SCROLL_DISTANCE) {
+                    // 向上滑动
+                    scrollListener?.onScrollUp()
+                }else if (scrollY - oldScrollY < -MainActivity.SCROLL_DISTANCE) {
+                    // 向下滑动
+                    scrollListener?.onScrollDown()
                 }
             }
         }

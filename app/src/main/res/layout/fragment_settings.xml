@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:background="@drawable/bg_avatar"
         android:id="@+id/fs_iv_user_icon"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginTop="36dp"
+        android:background="@drawable/bg_avatar"
         android:elevation="10dp"
         android:src="@mipmap/icon_user"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,342 +48,360 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fs_tv_user_name" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fs_setting_general"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        app:cardCornerRadius="@dimen/default_card_radius"
-        app:cardElevation="@dimen/card_elevation"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/fs_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fs_top_bg">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@drawable/bg_setting_button"
-                android:id="@+id/fs_item_theme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--主题-->
-                <ImageView
-                    android:id="@+id/fs_iv_theme"
-                    android:layout_width="@dimen/setting_icon_size"
-                    android:layout_height="@dimen/setting_icon_size"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@mipmap/icon_theme"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/fs_tv_theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="主题"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/setting_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
-                    app:layout_constraintStart_toEndOf="@id/fs_iv_theme"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
-
-                <TextView
-                    android:id="@+id/fs_tv_theme_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="浅色"
-                    android:textColor="@color/setting_value"
-                    android:textSize="@dimen/setting_value_text_size"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
-                    app:layout_constraintEnd_toStartOf="@id/fs_iv_theme_arrow"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
-
-                <ImageView
-                    android:id="@+id/fs_iv_theme_arrow"
-                    android:layout_width="@dimen/setting_arrow_size"
-                    android:layout_height="@dimen/setting_arrow_size"
-                    android:layout_marginEnd="16dp"
-                    android:src="@mipmap/icon_arrow_right"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@drawable/bg_setting_button"
-                android:id="@+id/fs_item_language"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <!--语言-->
-                <ImageView
-                    android:id="@+id/fs_iv_language"
-                    android:layout_width="@dimen/setting_icon_size"
-                    android:layout_height="@dimen/setting_icon_size"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@mipmap/icon_language"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/fs_tv_language"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="语言"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/setting_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
-                    app:layout_constraintStart_toEndOf="@id/fs_iv_language"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
-
-                <TextView
-                    android:id="@+id/fs_tv_language_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="简体中文"
-                    android:textColor="@color/setting_value"
-                    android:textSize="@dimen/setting_value_text_size"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
-                    app:layout_constraintEnd_toStartOf="@id/fs_iv_language_arrow"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
-
-                <ImageView
-                    android:id="@+id/fs_iv_language_arrow"
-                    android:layout_width="@dimen/setting_arrow_size"
-                    android:layout_height="@dimen/setting_arrow_size"
-                    android:layout_marginEnd="16dp"
-                    android:src="@mipmap/icon_arrow_right"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:background="@drawable/bg_setting_button"
-                android:id="@+id/fs_item_currency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--货币单位-->
-                <ImageView
-                    android:id="@+id/fs_iv_currency"
-                    android:layout_width="@dimen/setting_icon_size"
-                    android:layout_height="@dimen/setting_icon_size"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@mipmap/icon_currency"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/fs_tv_currency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="货币单位"
-                    android:textColor="@color/primary_dark"
-                    android:textSize="@dimen/setting_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
-                    app:layout_constraintStart_toEndOf="@id/fs_iv_currency"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
-
-                <TextView
-                    android:id="@+id/fs_tv_currency_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="CNY"
-                    android:textColor="@color/setting_value"
-                    android:textSize="@dimen/setting_value_text_size"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
-                    app:layout_constraintEnd_toStartOf="@id/fs_iv_currency_arrow"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
-
-                <ImageView
-                    android:id="@+id/fs_iv_currency_arrow"
-                    android:layout_width="@dimen/setting_arrow_size"
-                    android:layout_height="@dimen/setting_arrow_size"
-                    android:layout_marginEnd="16dp"
-                    android:src="@mipmap/icon_arrow_right"
-                    app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-    <!--通知设置-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fs_setting_notification"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="@dimen/default_card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
-        app:layout_constraintStart_toStartOf="@id/fs_setting_general"
-        app:layout_constraintTop_toBottomOf="@id/fs_setting_general">
+        app:layout_constraintTop_toBottomOf="@id/fs_top_margin_space">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/bg_setting_button"
-            android:id="@+id/fs_item_notification"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/fs_iv_notification"
-                android:layout_width="@dimen/setting_icon_size"
-                android:layout_height="@dimen/setting_icon_size"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@mipmap/icon_notification"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/fs_tv_notification"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fs_setting_general"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="通知设置"
-                android:textColor="@color/primary_dark"
-                android:textSize="@dimen/setting_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/fs_iv_notification"
-                app:layout_constraintStart_toEndOf="@id/fs_iv_notification"
-                app:layout_constraintTop_toTopOf="@id/fs_iv_notification" />
-
-
-            <ImageView
-                android:id="@+id/fs_iv_notification_arrow"
-                android:layout_width="@dimen/setting_arrow_size"
-                android:layout_height="@dimen/setting_arrow_size"
-                android:layout_marginEnd="16dp"
-                android:src="@mipmap/icon_arrow_right"
-                app:layout_constraintBottom_toBottomOf="@id/fs_iv_notification"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:cardElevation="@dimen/card_elevation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/fs_iv_notification" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!--关于-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fs_setting_about"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="@dimen/default_card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
-        app:layout_constraintStart_toStartOf="@id/fs_setting_general"
-        app:layout_constraintTop_toBottomOf="@id/fs_setting_notification">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fs_item_about"
-            android:background="@drawable/bg_setting_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/fs_iv_about"
-                android:layout_width="@dimen/setting_icon_size"
-                android:layout_height="@dimen/setting_icon_size"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@mipmap/icon_about"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/fs_tv_about"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fs_item_theme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_setting_button">
+                        <!--主题-->
+                        <ImageView
+                            android:id="@+id/fs_iv_theme"
+                            android:layout_width="@dimen/setting_icon_size"
+                            android:layout_height="@dimen/setting_icon_size"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@mipmap/icon_theme"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_theme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="主题"
+                            android:textColor="@color/primary_dark"
+                            android:textSize="@dimen/setting_text_size"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
+                            app:layout_constraintStart_toEndOf="@id/fs_iv_theme"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_theme_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:text="浅色"
+                            android:textColor="@color/setting_value"
+                            android:textSize="@dimen/setting_value_text_size"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
+                            app:layout_constraintEnd_toStartOf="@id/fs_iv_theme_arrow"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
+
+                        <ImageView
+                            android:id="@+id/fs_iv_theme_arrow"
+                            android:layout_width="@dimen/setting_arrow_size"
+                            android:layout_height="@dimen/setting_arrow_size"
+                            android:layout_marginEnd="16dp"
+                            android:src="@mipmap/icon_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_theme"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_theme" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fs_item_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_setting_button">
+
+
+                        <!--语言-->
+                        <ImageView
+                            android:id="@+id/fs_iv_language"
+                            android:layout_width="@dimen/setting_icon_size"
+                            android:layout_height="@dimen/setting_icon_size"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@mipmap/icon_language"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="语言"
+                            android:textColor="@color/primary_dark"
+                            android:textSize="@dimen/setting_text_size"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
+                            app:layout_constraintStart_toEndOf="@id/fs_iv_language"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_language_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:text="简体中文"
+                            android:textColor="@color/setting_value"
+                            android:textSize="@dimen/setting_value_text_size"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
+                            app:layout_constraintEnd_toStartOf="@id/fs_iv_language_arrow"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
+
+                        <ImageView
+                            android:id="@+id/fs_iv_language_arrow"
+                            android:layout_width="@dimen/setting_arrow_size"
+                            android:layout_height="@dimen/setting_arrow_size"
+                            android:layout_marginEnd="16dp"
+                            android:src="@mipmap/icon_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_language"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fs_item_currency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_setting_button">
+                        <!--货币单位-->
+                        <ImageView
+                            android:id="@+id/fs_iv_currency"
+                            android:layout_width="@dimen/setting_icon_size"
+                            android:layout_height="@dimen/setting_icon_size"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@mipmap/icon_currency"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_currency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="货币单位"
+                            android:textColor="@color/primary_dark"
+                            android:textSize="@dimen/setting_text_size"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
+                            app:layout_constraintStart_toEndOf="@id/fs_iv_currency"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
+
+                        <TextView
+                            android:id="@+id/fs_tv_currency_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:text="CNY"
+                            android:textColor="@color/setting_value"
+                            android:textSize="@dimen/setting_value_text_size"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
+                            app:layout_constraintEnd_toStartOf="@id/fs_iv_currency_arrow"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
+
+                        <ImageView
+                            android:id="@+id/fs_iv_currency_arrow"
+                            android:layout_width="@dimen/setting_arrow_size"
+                            android:layout_height="@dimen/setting_arrow_size"
+                            android:layout_marginEnd="16dp"
+                            android:src="@mipmap/icon_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@id/fs_iv_currency"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/fs_iv_currency" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--通知设置-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fs_setting_notification"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="关于"
-                android:textColor="@color/primary_dark"
-                android:textSize="@dimen/setting_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/fs_iv_about"
-                app:layout_constraintStart_toEndOf="@id/fs_iv_about"
-                app:layout_constraintTop_toTopOf="@id/fs_iv_about" />
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
+                app:layout_constraintStart_toStartOf="@id/fs_setting_general"
+                app:layout_constraintTop_toBottomOf="@id/fs_setting_general">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fs_item_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_setting_button">
 
-    <!--退出登录-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/fs_setting_logout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="@dimen/default_card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
-        app:layout_constraintStart_toStartOf="@id/fs_setting_general"
-        app:layout_constraintTop_toBottomOf="@id/fs_setting_about">
+                    <ImageView
+                        android:id="@+id/fs_iv_notification"
+                        android:layout_width="@dimen/setting_icon_size"
+                        android:layout_height="@dimen/setting_icon_size"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/icon_notification"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/bg_setting_button"
-            android:id="@+id/fs_item_logout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/fs_tv_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="通知设置"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="@dimen/setting_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/fs_iv_notification"
+                        app:layout_constraintStart_toEndOf="@id/fs_iv_notification"
+                        app:layout_constraintTop_toTopOf="@id/fs_iv_notification" />
 
-            <ImageView
-                android:id="@+id/fs_iv_logout"
-                android:layout_width="@dimen/setting_icon_size"
-                android:layout_height="@dimen/setting_icon_size"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@mipmap/icon_logout"
+
+                    <ImageView
+                        android:id="@+id/fs_iv_notification_arrow"
+                        android:layout_width="@dimen/setting_arrow_size"
+                        android:layout_height="@dimen/setting_arrow_size"
+                        android:layout_marginEnd="16dp"
+                        android:src="@mipmap/icon_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="@id/fs_iv_notification"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fs_iv_notification" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!--关于-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fs_setting_about"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
+                app:layout_constraintStart_toStartOf="@id/fs_setting_general"
+                app:layout_constraintTop_toBottomOf="@id/fs_setting_notification">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fs_item_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_setting_button">
+
+                    <ImageView
+                        android:id="@+id/fs_iv_about"
+                        android:layout_width="@dimen/setting_icon_size"
+                        android:layout_height="@dimen/setting_icon_size"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/icon_about"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fs_tv_about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="关于"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="@dimen/setting_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/fs_iv_about"
+                        app:layout_constraintStart_toEndOf="@id/fs_iv_about"
+                        app:layout_constraintTop_toTopOf="@id/fs_iv_about" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!--退出登录-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fs_setting_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:cardElevation="@dimen/card_elevation"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/fs_setting_general"
+                app:layout_constraintStart_toStartOf="@id/fs_setting_general"
+                app:layout_constraintTop_toBottomOf="@id/fs_setting_about">
 
-            <TextView
-                android:id="@+id/fs_tv_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="退出登录"
-                android:textColor="@color/primary_dark"
-                android:textSize="@dimen/setting_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/fs_iv_logout"
-                app:layout_constraintStart_toEndOf="@id/fs_iv_logout"
-                app:layout_constraintTop_toTopOf="@id/fs_iv_logout" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fs_item_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_setting_button">
 
+                    <ImageView
+                        android:id="@+id/fs_iv_logout"
+                        android:layout_width="@dimen/setting_icon_size"
+                        android:layout_height="@dimen/setting_icon_size"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@mipmap/icon_logout"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fs_tv_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="退出登录"
+                        android:textColor="@color/primary_dark"
+                        android:textSize="@dimen/setting_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/fs_iv_logout"
+                        app:layout_constraintStart_toEndOf="@id/fs_iv_logout"
+                        app:layout_constraintTop_toTopOf="@id/fs_iv_logout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

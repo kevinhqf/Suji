@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="false"
-    app:cardElevation="10dp"
+    android:layout_margin="16dp"
     app:cardCornerRadius="50dp"
-    android:layout_marginBottom="16dp"
-    android:layout_gravity="bottom|center">
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="false"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +19,6 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="16dp"
             android:id="@+id/mm_iv_home"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -30,8 +32,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:id="@+id/mm_iv_data"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -42,8 +42,6 @@
             app:layout_constraintTop_toTopOf="@id/mm_iv_home" />
 
         <ImageView
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="32dp"
             android:id="@+id/mm_iv_user"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -52,34 +50,35 @@
             app:layout_constraintEnd_toStartOf="@id/mm_add"
             app:layout_constraintStart_toEndOf="@id/mm_iv_data"
             app:layout_constraintTop_toTopOf="@id/mm_iv_home" />
+
         <FrameLayout
+            android:id="@+id/mm_split"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
             android:background="#ccc"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/mm_iv_user"
             app:layout_constraintEnd_toStartOf="@id/mm_add"
-            android:id="@+id/mm_split"
-            android:layout_width="1dp"
-            android:layout_height="0dp"/>
+            app:layout_constraintStart_toEndOf="@id/mm_iv_user"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingEnd="24dp"
+            android:id="@+id/mm_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bg_add"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingStart="16dp"
             android:paddingTop="4dp"
+            android:paddingEnd="24dp"
             android:paddingBottom="4dp"
-            android:background="@drawable/bg_add"
-            app:layout_constraintTop_toTopOf="@id/mm_iv_home"
             app:layout_constraintBottom_toBottomOf="@id/mm_iv_home"
-            app:layout_constraintStart_toEndOf="@id/mm_iv_user"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/mm_add"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            app:layout_constraintTop_toTopOf="@id/mm_iv_home">
 
             <ImageView
                 android:id="@+id/mm_iv_add"
@@ -92,13 +91,13 @@
                 app:layout_constraintTop_toTopOf="@id/mm_iv_home" />
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="17sp"
                 android:id="@+id/mm_tv_add"
-                android:textColor="@android:color/white"
-                android:text="添加"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="添加"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

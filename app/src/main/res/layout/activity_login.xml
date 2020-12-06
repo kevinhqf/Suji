@@ -16,51 +16,51 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:fontFamily="@font/exo_2"
         android:id="@+id/al_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/exo_2"
         android:text="输入您的\n11 位手机号码"
         android:textColor="#232127"
-        android:textSize="50sp"
+        android:textSize="@dimen/big_title_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/al_back"
         app:layout_constraintTop_toBottomOf="@id/al_back" />
 
     <TextView
-        android:fontFamily="@font/exo_2"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/al_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/al_tv_title"
-        android:text="+86"
-        android:textSize="28sp"
         android:id="@+id/al_tv_countryCode"
-        android:textColor="@color/primary_dark"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/exo_2"
+        android:text="+86"
+        android:textColor="@color/primary_dark"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@id/al_tv_title"
+        app:layout_constraintTop_toBottomOf="@id/al_tv_title" />
 
     <TextView
-        android:fontFamily="@font/exo_2"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@id/al_tv_countryCode"
-        android:text="000-0000-0000"
-        app:layout_constraintTop_toTopOf="@id/al_tv_countryCode"
-        app:layout_constraintStart_toEndOf="@id/al_tv_countryCode"
         android:id="@+id/al_tv_phone"
-        android:textColor="#D2D2D4"
-        android:textSize="28sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/exo_2"
+        android:text="000-0000-0000"
+        android:textColor="#D2D2D4"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@id/al_tv_countryCode"
+        app:layout_constraintTop_toTopOf="@id/al_tv_countryCode" />
 
 
     <com.google.android.material.button.MaterialButton
+
         android:id="@+id/al_btn_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/login_btn_margin"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/login_btn_margin"
         android:layout_marginBottom="@dimen/login_btn_margin"
         android:enabled="false"
@@ -70,17 +70,26 @@
         android:textSize="@dimen/login_btn_text_size"
         android:textStyle="bold"
         app:cornerRadius="@dimen/login_btn_radius"
-        app:layout_constraintBottom_toTopOf="@id/al_numpad"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/al_tv_countryCode" />
+
+    <FrameLayout
+        android:id="@+id/al_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/al_numpad"
         layout="@layout/widget_numpad2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/al_line" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

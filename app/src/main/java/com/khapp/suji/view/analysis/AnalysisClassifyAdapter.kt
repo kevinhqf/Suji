@@ -12,7 +12,7 @@ import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.RVHolder
 import kotlinx.android.synthetic.main.item_analysis_classify.view.*
 
-class AnalysisClassifyAdapter(private val context: Context, var type: NoteType = NoteType.INCOME) :
+class AnalysisClassifyAdapter(private val context: Context, var type: NoteType = NoteType.EXPENSE) :
     RecyclerView.Adapter<RVHolder>() {
 
     var transactionList: List<TransactionInfo>?=null

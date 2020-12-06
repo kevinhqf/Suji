@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.khapp.suji.MainActivity
 import com.khapp.suji.R
 import com.khapp.suji.data.AnalysisTimeUnit
 import com.khapp.suji.data.NoteType
@@ -88,13 +89,14 @@ class AnalysisFragment : Fragment() {
                 fa_tv_income_total_label.text = "半年收入"
                 fa_tv_expense_total_label.text = "半年支出"
             }
+            //滑动监听
             fa_scrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
-                if (scrollY - oldScrollY > 50) {
+                if (scrollY - oldScrollY > MainActivity.SCROLL_DISTANCE) {
                     // 向上滑动
                     scrollListener?.onScrollUp()
                 }
 
-                if (scrollY - oldScrollY < -50) {
+                if (scrollY - oldScrollY < -MainActivity.SCROLL_DISTANCE) {
                     // 向下滑动
                     scrollListener?.onScrollDown()
                 }
@@ -114,9 +116,10 @@ class AnalysisFragment : Fragment() {
             if (!it.isNullOrEmpty()) {
                 fa_card_statistics_classify.visibility = View.VISIBLE
                 transactionViewModel.analysisTimeUnitMoney(it)
-                classifyAdapter.statistics(it)
                 if (it.none { item -> item.dataTypeValue == transactionViewModel.getStatisticsNoteType().value }) {
                     transactionViewModel.switchStatisticsType()
+                } else {
+                    classifyAdapter.statistics(it)
                 }
             } else {
                 fa_card_statistics_classify.visibility = View.INVISIBLE

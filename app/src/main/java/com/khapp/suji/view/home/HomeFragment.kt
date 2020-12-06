@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.khapp.suji.MainActivity
 import com.khapp.suji.R
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.Utils
@@ -81,10 +82,10 @@ class HomeFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
                 super.onScrolled(recyclerView, dx, dy)
-                if (dy > 50) {
+                if (dy > MainActivity.SCROLL_DISTANCE) {
                     //上滑
                     scrollListener?.onScrollUp()
-                } else if (dy < -50) {
+                } else if (dy < -MainActivity.SCROLL_DISTANCE) {
                     //下滑
                     scrollListener?.onScrollDown()
                 }

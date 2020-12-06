@@ -21,12 +21,13 @@
     <dimen name="setting_dialog_icon_margin">24dp</dimen>
     <dimen name="setting_dialog_text_margin">16dp</dimen>
     <dimen name="numpad2_num_size">21sp</dimen>
-    <dimen name="numpad2_padding">20dp</dimen>
-    <dimen name="numpad2_margin">16dp</dimen>
+    <dimen name="numpad2_padding">16dp</dimen>
+    <dimen name="numpad2_margin">32dp</dimen>
     <dimen name="numpad2_inner_margin">64dp</dimen>
     <dimen name="login_btn_radius">25dp</dimen>
     <dimen name="login_btn_text_size">17sp</dimen>
     <dimen name="login_btn_padding">15dp</dimen>
     <dimen name="login_btn_margin">24dp</dimen>
     <dimen name="profile_text_size">16sp</dimen>
+    <dimen name="big_title_text_size">48sp</dimen>
 </resources>

@@ -37,8 +37,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         const val HOME_POSITION = 1
         const val DATA_POSITION = 2
         const val SETTINGS_POSITION = 3
+        const val SCROLL_DISTANCE = 30
     }
-
 
 
     private val mainViewModel: MainViewModel by viewModels {
@@ -165,9 +165,10 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             }
 
         }
-
+        //添加滑动监听器
         homeFragment.scrollListener = scrollListener
         analysisFragment.scrollListener = scrollListener
+        settingsFragment.scrollListener = scrollListener
         mm_iv_home.setOnClickListener {
             mainViewModel.changeMenuPosition(HOME_POSITION)
         }

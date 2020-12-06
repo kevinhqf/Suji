@@ -7,11 +7,11 @@
     android:background="@drawable/bg_numpad2">
 
     <TextView
+        android:layout_marginTop="32dp"
         android:id="@+id/numpad2_1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/numpad2_margin"
-        android:layout_marginTop="32dp"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
         android:fontFamily="@font/exo_2_bold"
@@ -21,19 +21,19 @@
         android:text="1"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
+        app:layout_constraintBottom_toTopOf="@id/numpad2_4"
         app:layout_constraintEnd_toStartOf="@id/numpad2_2"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginTop="32dp"
+        android:id="@+id/numpad2_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/numpad2_inner_margin"
-        android:layout_marginEnd="@dimen/numpad2_inner_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -41,18 +41,19 @@
         android:text="2"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
+        app:layout_constraintBottom_toTopOf="@id/numpad2_5"
         app:layout_constraintEnd_toStartOf="@id/numpad2_3"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/numpad2_1"
-        app:layout_constraintTop_toTopOf="@id/numpad2_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:background="@drawable/bg_numpad2_text"
-        android:clickable="true"
+        android:layout_marginTop="32dp"
         android:id="@+id/numpad2_3"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/numpad2_margin"
+        android:background="@drawable/bg_numpad2_text"
+        android:clickable="true"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -60,18 +61,17 @@
         android:text="3"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
+        app:layout_constraintBottom_toTopOf="@id/numpad2_6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/numpad2_2"
-        app:layout_constraintTop_toTopOf="@id/numpad2_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/numpad2_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/numpad2_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -79,37 +79,35 @@
         android:text="4"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toStartOf="@id/numpad2_5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/numpad2_7"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_1"
+        app:layout_constraintStart_toStartOf="@id/numpad2_1"
         app:layout_constraintTop_toBottomOf="@id/numpad2_1" />
 
     <TextView
+        android:id="@+id/numpad2_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/numpad2_inner_margin"
-        android:layout_marginEnd="@dimen/numpad2_inner_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
-
         android:paddingBottom="@dimen/numpad2_padding"
         android:text="5"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toStartOf="@id/numpad2_6"
-        app:layout_constraintStart_toEndOf="@id/numpad2_4"
-        app:layout_constraintTop_toTopOf="@id/numpad2_4" />
+        app:layout_constraintBottom_toTopOf="@id/numpad2_8"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_2"
+        app:layout_constraintStart_toStartOf="@id/numpad2_2"
+        app:layout_constraintTop_toBottomOf="@id/numpad2_2" />
 
     <TextView
+        android:id="@+id/numpad2_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/numpad2_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -117,17 +115,17 @@
         android:text="6"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/numpad2_5"
-        app:layout_constraintTop_toTopOf="@id/numpad2_4" />
+        app:layout_constraintBottom_toTopOf="@id/numpad2_9"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_3"
+        app:layout_constraintStart_toStartOf="@id/numpad2_3"
+        app:layout_constraintTop_toBottomOf="@id/numpad2_3" />
 
     <TextView
+        android:id="@+id/numpad2_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/numpad2_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -135,37 +133,35 @@
         android:text="7"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toStartOf="@id/numpad2_8"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/numpad2_0"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_4"
+        app:layout_constraintStart_toStartOf="@id/numpad2_4"
         app:layout_constraintTop_toBottomOf="@id/numpad2_4" />
 
     <TextView
+        android:id="@+id/numpad2_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_8"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/numpad2_inner_margin"
-        android:layout_marginEnd="@dimen/numpad2_inner_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
-
         android:paddingBottom="@dimen/numpad2_padding"
         android:text="8"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toStartOf="@id/numpad2_9"
-        app:layout_constraintStart_toEndOf="@id/numpad2_7"
-        app:layout_constraintTop_toTopOf="@id/numpad2_7" />
+        app:layout_constraintBottom_toTopOf="@id/numpad2_0"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_5"
+        app:layout_constraintStart_toStartOf="@id/numpad2_5"
+        app:layout_constraintTop_toBottomOf="@id/numpad2_5" />
 
     <TextView
+        android:id="@+id/numpad2_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_numpad2_text"
         android:clickable="true"
-        android:id="@+id/numpad2_9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/numpad2_margin"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -173,17 +169,19 @@
         android:text="9"
         android:textColor="@color/numpad2_num"
         android:textSize="@dimen/numpad2_num_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/numpad2_8"
-        app:layout_constraintTop_toTopOf="@id/numpad2_7" />
+        app:layout_constraintBottom_toTopOf="@id/numpad2_0"
+        app:layout_constraintEnd_toEndOf="@id/numpad2_6"
+        app:layout_constraintStart_toStartOf="@id/numpad2_6"
+        app:layout_constraintTop_toBottomOf="@id/numpad2_6" />
 
     <TextView
-        android:background="@drawable/bg_numpad2_text"
-        android:clickable="true"
+
         android:id="@+id/numpad2_0"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_numpad2_text"
+        android:clickable="true"
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:paddingTop="@dimen/numpad2_padding"
@@ -197,11 +195,11 @@
         app:layout_constraintTop_toBottomOf="@id/numpad2_8" />
 
     <ImageView
-        android:background="@drawable/bg_numpad2_text"
-        android:clickable="true"
         android:id="@+id/numpad2_del"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/bg_numpad2_text"
+        android:clickable="true"
         android:padding="20dp"
         android:src="@mipmap/icon_delete"
         app:layout_constraintBottom_toBottomOf="@id/numpad2_0"
