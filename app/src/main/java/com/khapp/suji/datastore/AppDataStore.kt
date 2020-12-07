@@ -56,6 +56,7 @@ class AppDataStore(val context: Context) {
         }
     }.map {
         val language = Language.valueOf(it[CONFIG_LANGUAGE] ?: "CHN")
+        Constance.config.language = language
         language
     }
 

@@ -2,6 +2,7 @@ package com.khapp.suji.view.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.khapp.suji.Constance
 import com.khapp.suji.MainActivity
 import com.khapp.suji.R
 import com.khapp.suji.ui.AppAlertDialog
+import com.khapp.suji.ui.LoadingDialog
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.LanguageUtils
 import com.khapp.suji.view.comm.OnMainPageScrollListener
@@ -76,8 +78,12 @@ class SettingsFragment : Fragment() {
             }
             fs_item_language.setOnClickListener {
                 languageDialog?.setOKListener {
+                    LoadingDialog(requireContext()).show()
                     mainViewModel.saveConfig(language = it) {
-                        LanguageUtils.changeLanguage(requireContext())
+                        Handler().postDelayed(Runnable {
+                            //切换语言
+                            LanguageUtils.changeLanguage(requireContext())
+                        },2000)
                     }
                 }?.show()
             }
