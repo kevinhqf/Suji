@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.khapp.suji.Constance
 import com.khapp.suji.R
 import com.khapp.suji.data.NoteType
 import com.khapp.suji.data.TransactionDetail
@@ -52,9 +53,11 @@ class TransactionAdapter(val context: Context) :
                 it.it_title.text = item.dataTypeName
                 it.it_time.text = Utils.formatTransactionTime(item.createTime)
                 if (item.dataTypeValue == NoteType.INCOME.value) {
-                    it.it_value.text = "￥${Utils.formatMoneyValue(item.value)}"
+                    it.it_value.text =
+                        "${Constance.config.currency.sign}${Utils.formatMoneyValue(item.value)}"
                 } else {
-                    it.it_value.text = "-￥${Utils.formatMoneyValue(item.value)}"
+                    it.it_value.text =
+                        "-${Constance.config.currency.sign}${Utils.formatMoneyValue(item.value)}"
                 }
             }
 

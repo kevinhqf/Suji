@@ -35,7 +35,4 @@ class MainViewModel(private val mainRepository: MainRepository) : BaseViewModel(
         }
     }
 
-    fun getLanguage(): Language {
-        return appConfig.value?.language ?: Language.CHN
-    }
 }

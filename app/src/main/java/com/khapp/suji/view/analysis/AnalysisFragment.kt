@@ -18,6 +18,7 @@ import com.khapp.suji.data.NoteType
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.Utils
 import com.khapp.suji.view.comm.OnMainPageScrollListener
+import com.khapp.suji.viewmodel.MainViewModel
 import com.khapp.suji.viewmodel.TransactionViewModel
 import kotlinx.android.synthetic.main.fragment_analysis.*
 import kotlinx.android.synthetic.main.fragment_analysis.view.*
@@ -28,6 +29,10 @@ class AnalysisFragment : Fragment() {
     var scrollListener: OnMainPageScrollListener? = null
     private val transactionViewModel: TransactionViewModel by activityViewModels {
         InjectorUtils.provideTransactionViewModelFactory()
+    }
+
+    private val mainViewModel: MainViewModel by activityViewModels {
+        InjectorUtils.provideMainViewModelFactory()
     }
 
     override fun onCreateView(
@@ -146,6 +151,10 @@ class AnalysisFragment : Fragment() {
             classifyAdapter.switchType(it)
         })
 
+        mainViewModel.appConfig.observe(viewLifecycleOwner, Observer {
+            root.fa_tv_income_currency.text = it.currency.description
+            root.fa_tv_expense_currency.text = it.currency.description
+        })
     }
 
     private fun clearTabState(root: View) {

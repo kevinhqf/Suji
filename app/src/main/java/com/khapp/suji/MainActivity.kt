@@ -41,9 +41,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     }
 
 
-
-
-
     private val additionViewModel: AdditionViewModel by viewModels {
         InjectorUtils.provideAdditionViewModelFactory()
     }
@@ -131,6 +128,9 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
         mainViewModel.menuPosition.observe(this, Observer {
             changeFragment(it)
+        })
+        mainViewModel.appConfig.observe(this, Observer {
+            Constance.config = it
         })
     }
 

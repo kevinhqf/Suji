@@ -23,18 +23,18 @@ class TransactionRepository(private val transactionDao: TransactionDao) : BaseRe
     }
 
 
-    suspend fun getThisWeekTransaction(uid: Long): List<TransactionInfo> {
+    private suspend fun getThisWeekTransaction(uid: Long): List<TransactionInfo> {
         val thisWeek = DateUtils.getThisWeekTimeUnit()
         //Log.e("ThisWeekTransaction: ", "start=${thisWeek.start},end = ${thisWeek.end}")
         return transactionDao.getTransactionListByTime(uid, thisWeek.start, thisWeek.end)
     }
 
-    suspend fun getThisMonthTransaction(uid: Long): List<TransactionInfo> {
+    private suspend fun getThisMonthTransaction(uid: Long): List<TransactionInfo> {
         val thisMonth = DateUtils.getThisMonthTimeUnit()
         return transactionDao.getTransactionListByTime(uid, thisMonth.start, thisMonth.end)
     }
 
-    suspend fun getLatelyHalfYearTransaction(uid: Long): List<TransactionInfo> {
+    private suspend fun getLatelyHalfYearTransaction(uid: Long): List<TransactionInfo> {
         val latelyHalfYear = DateUtils.getLatelyHalfYearTimeUnit()
         return transactionDao.getTransactionListByTime(
             uid,

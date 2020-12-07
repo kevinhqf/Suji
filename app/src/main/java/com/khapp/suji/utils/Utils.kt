@@ -2,36 +2,14 @@ package com.khapp.suji.utils
 
 import android.content.Context
 import android.widget.Toast
+import com.khapp.suji.Constance
 import com.khapp.suji.data.TimeUnit
+import com.khapp.suji.preset.Currency
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
 
 object Utils {
-    fun formatMoney(money: Double): String {
-        var sign = "￥"
-        var tmp = money
-        if (money < 0) {
-            sign = "-￥"
-            tmp = money * -1
-        }
-        return when {
-            tmp >= 1000000000 -> {
-                val num = (tmp / 1000000000).toInt()
-                sign + num + "B"
-            }
-            tmp >= 1000000 -> {
-                val num = (tmp / 1000000).toInt()
-                sign + num + "M"
-            }
-            tmp >= 1000 -> {
-                val num = (tmp / 1000).toInt()
-                sign + num + "K"
-            }
-            else -> sign + String.format("%,.2f", tmp)
-        }
-    }
-
     fun formatChartScale(value: Float): String {
         return when {
             value >= 10000 -> {
@@ -89,7 +67,7 @@ object Utils {
     fun getFormatMoneyStr(value: Float): String {
         val sign = if (value >= 0) "" else "-"
 
-        return "$sign￥${String.format("%,.2f", value).replace("-", "")}"
+        return "$sign${Constance.config.currency.sign}${String.format("%,.2f", value).replace("-", "")}"
     }
 
     /**

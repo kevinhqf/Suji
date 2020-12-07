@@ -34,9 +34,9 @@
         android:layout_marginTop="8dp"
         android:elevation="10dp"
         android:text="@string/please_login_text"
-        android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/fs_iv_user_icon"
         app:layout_constraintStart_toStartOf="@id/fs_iv_user_icon"
         app:layout_constraintTop_toBottomOf="@id/fs_iv_user_icon" />
@@ -188,12 +188,13 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/fs_iv_language" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
+                    <!--todo 暂时不开启货币选择-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/fs_item_currency"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_setting_button">
+                        android:background="@drawable/bg_setting_button"
+                        android:visibility="gone">
                         <!--货币单位-->
                         <ImageView
                             android:id="@+id/fs_iv_currency"
