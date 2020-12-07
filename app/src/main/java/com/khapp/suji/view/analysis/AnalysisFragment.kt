@@ -54,7 +54,7 @@ class AnalysisFragment : Fragment() {
 
     private fun initData(root: View) {
         changeSelectTabState(root.fa_tv_time1, root)
-        transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
+        transactionViewModel.switchAnalysisTimeUnit(requireContext(), AnalysisTimeUnit.THIS_WEEK)
 
     }
 
@@ -70,24 +70,33 @@ class AnalysisFragment : Fragment() {
 
             fa_tv_time1.setOnClickListener {
                 changeSelectTabState(it as TextView, root)
-                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_WEEK)
-                fa_tv_title.text = "本周统计"
-                fa_tv_income_total_label.text = "本周收入"
-                fa_tv_expense_total_label.text = "本周支出"
+                transactionViewModel.switchAnalysisTimeUnit(
+                    requireContext(),
+                    AnalysisTimeUnit.THIS_WEEK
+                )
+                fa_tv_title.text = context.getString(R.string.time_unit1_statistics)
+                fa_tv_income_total_label.text = context.getString(R.string.time_unit1_income)
+                fa_tv_expense_total_label.text = context.getString(R.string.time_unit1_expense)
             }
             fa_tv_time2.setOnClickListener {
                 changeSelectTabState(it as TextView, root)
-                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.THIS_MONTH)
-                fa_tv_title.text = "本月统计"
-                fa_tv_income_total_label.text = "本月收入"
-                fa_tv_expense_total_label.text = "本月支出"
+                transactionViewModel.switchAnalysisTimeUnit(
+                    requireContext(),
+                    AnalysisTimeUnit.THIS_MONTH
+                )
+                fa_tv_title.text = context.getString(R.string.time_unit2_statistics)
+                fa_tv_income_total_label.text = context.getString(R.string.time_unit2_income)
+                fa_tv_expense_total_label.text = context.getString(R.string.time_unit2_expense)
             }
             fa_tv_time3.setOnClickListener {
                 changeSelectTabState(it as TextView, root)
-                transactionViewModel.switchAnalysisTimeUnit(AnalysisTimeUnit.LATELY_HALF_YEAR)
-                fa_tv_title.text = "半年统计"
-                fa_tv_income_total_label.text = "半年收入"
-                fa_tv_expense_total_label.text = "半年支出"
+                transactionViewModel.switchAnalysisTimeUnit(
+                    requireContext(),
+                    AnalysisTimeUnit.LATELY_HALF_YEAR
+                )
+                fa_tv_title.text = context.getString(R.string.time_unit3_statistics)
+                fa_tv_income_total_label.text = context.getString(R.string.time_unit3_income)
+                fa_tv_expense_total_label.text = context.getString(R.string.time_unit3_expense)
             }
             //滑动监听
             fa_scrollView.setOnScrollChangeListener { _: NestedScrollView?, _: Int, scrollY: Int, _: Int, oldScrollY: Int ->
@@ -115,7 +124,7 @@ class AnalysisFragment : Fragment() {
         transactionViewModel.analysisTransactions.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
                 fa_card_statistics_classify.visibility = View.VISIBLE
-                transactionViewModel.analysisTimeUnitMoney(it)
+                transactionViewModel.analysisTimeUnitMoney(requireContext(), it)
                 if (it.none { item -> item.dataTypeValue == transactionViewModel.getStatisticsNoteType().value }) {
                     transactionViewModel.switchStatisticsType()
                 } else {

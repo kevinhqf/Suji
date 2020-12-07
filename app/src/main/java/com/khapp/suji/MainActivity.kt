@@ -41,9 +41,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     }
 
 
-    private val mainViewModel: MainViewModel by viewModels {
-        InjectorUtils.provideMainViewModelFactory()
-    }
+
 
 
     private val additionViewModel: AdditionViewModel by viewModels {
@@ -253,11 +251,11 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
                     *permissionsForQ
                 ) else EasyPermissions.hasPermissions(this, *permissions)
             ) {
-                Toast.makeText(this, "权限OK", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permission_ok), Toast.LENGTH_LONG).show()
             } else {
                 EasyPermissions.requestPermissions(
                     this,
-                    "需要权限",
+                    getString(R.string.need_permission),
                     RC_LOCATION_PHONE_STORAGE,
                     *if (Build.VERSION.SDK_INT >= 29) permissionsForQ else permissions
                 )

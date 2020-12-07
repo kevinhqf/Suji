@@ -177,18 +177,18 @@ class HistogramView : View {
         invalidate()
     }
 
-    fun test() {
-        setData(
-            arrayListOf(
-                HistogramView.Histogram.HistogramData("周日", arrayListOf(2020f, 200f)),
-                HistogramView.Histogram.HistogramData("周一", arrayListOf(300f, 200f)),
-                HistogramView.Histogram.HistogramData("周二", arrayListOf(1450f, 270f)),
-                HistogramView.Histogram.HistogramData("周三", arrayListOf(140f, 1100f)),
-                HistogramView.Histogram.HistogramData("周四", arrayListOf(1430f, 220f))
-            ),
-            arrayOf(Color.parseColor("#FF5D5D"), Color.parseColor("#5EDA72"))
-        )
-    }
+//    fun test() {
+//        setData(
+//            arrayListOf(
+//                HistogramView.Histogram.HistogramData("周日", arrayListOf(2020f, 200f)),
+//                HistogramView.Histogram.HistogramData("周一", arrayListOf(300f, 200f)),
+//                HistogramView.Histogram.HistogramData("周二", arrayListOf(1450f, 270f)),
+//                HistogramView.Histogram.HistogramData("周三", arrayListOf(140f, 1100f)),
+//                HistogramView.Histogram.HistogramData("周四", arrayListOf(1430f, 220f))
+//            ),
+//            arrayOf(Color.parseColor("#FF5D5D"), Color.parseColor("#5EDA72"))
+//        )
+//    }
 
     private fun getSize(measureSpec: Int, isWidth: Boolean): Int {
         val result: Int

@@ -1,5 +1,6 @@
 package com.khapp.suji.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -43,12 +44,12 @@ class TransactionViewModel(private val repository: TransactionRepository) : Base
     /**
      * 切换统计页的时间单位
      */
-    fun switchAnalysisTimeUnit(unit: AnalysisTimeUnit) {
+    fun switchAnalysisTimeUnit(context: Context,unit: AnalysisTimeUnit) {
         analysisTimeUnit = unit
         launchIO {
             val at = repository.getAnalysisTransaction(Constance.userId, unit)
             analysisTransactions.postValue(at)
-            analysisTimeUnitMoney(at)
+            analysisTimeUnitMoney(context,at)
         }
     }
 
@@ -75,10 +76,10 @@ class TransactionViewModel(private val repository: TransactionRepository) : Base
     /**
      * 分析账单并生成图表数据
      */
-    fun analysisTimeUnitMoney(list: List<TransactionInfo>) {
+    fun analysisTimeUnitMoney(context: Context,list: List<TransactionInfo>) {
         analysisOverview.postValue(calcMoneyOverviewBy(list))
         val graphData = ArrayList<HistogramView.Histogram.HistogramData>()
-        val graphTimeUnit = DateUtils.getGraphTimeUnitArr(analysisTimeUnit)
+        val graphTimeUnit = DateUtils.getGraphTimeUnitArr(context,analysisTimeUnit)
         graphTimeUnit.forEach { gtu ->
             val filter =
                 list.filter { it.createTime >= gtu.time.start && it.createTime <= gtu.time.end }
@@ -103,11 +104,11 @@ class TransactionViewModel(private val repository: TransactionRepository) : Base
      */
     private fun calcMoneyOverviewBy(list: List<TransactionInfo>): MoneyOverview {
         val incomeValue =
-            list.filter { it.dataTypeValue == NoteType.INCOME.value }?.fold(0f) { acc, info ->
+            list.filter { it.dataTypeValue == NoteType.INCOME.value }.fold(0f) { acc, info ->
                 acc + info.value
             }
         val expenseValue =
-            list.filter { it.dataTypeValue == NoteType.EXPENSE.value }?.fold(0f) { acc, info ->
+            list.filter { it.dataTypeValue == NoteType.EXPENSE.value }.fold(0f) { acc, info ->
                 acc + info.value
             }
         return MoneyOverview(

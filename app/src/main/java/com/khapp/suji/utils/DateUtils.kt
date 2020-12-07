@@ -1,10 +1,12 @@
 package com.khapp.suji.utils
 
+import android.content.Context
+import com.khapp.suji.App
+import com.khapp.suji.R
 import com.khapp.suji.data.AnalysisTimeUnit
 import com.khapp.suji.data.GraphTimeUnit
 import com.khapp.suji.data.TimeUnit
 import java.text.SimpleDateFormat
-import java.time.DayOfWeek
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -99,11 +101,19 @@ object DateUtils {
         return TimeUnit(start, end)
     }
 
-    fun getGraphTimeUnitArr(timeUnit: AnalysisTimeUnit): ArrayList<GraphTimeUnit> {
+    fun getGraphTimeUnitArr(context:Context,timeUnit: AnalysisTimeUnit): ArrayList<GraphTimeUnit> {
         val graphTimeUnit = ArrayList<GraphTimeUnit>()
         return when (timeUnit) {
             AnalysisTimeUnit.THIS_WEEK -> {
-                val times = arrayOf("周一", "周二", "周三", "周四", "周五", "周六", "周日")
+                val times = arrayOf(
+                    context.getString(R.string.monday_text),
+                    context.getString(R.string.tuesday_text),
+                    context.getString(R.string.wednesday_text),
+                    context.getString(R.string.thursday_text),
+                    context.getString(R.string.friday_text),
+                    context.getString(R.string.saturday_text),
+                    context.getString(R.string.sunday_text)
+                )
                 times.forEachIndexed { index, title ->
                     graphTimeUnit.add(GraphTimeUnit(title, getDayOfThisWeekTimeUnit(index + 1)))
                 }
@@ -121,23 +131,68 @@ object DateUtils {
             AnalysisTimeUnit.LATELY_HALF_YEAR -> {
                 val thisMonthOfYear = getThisMonthOfYear()
                 arrayOf(
-                    "${thisMonthOfYear - 5}月",
-                    "${thisMonthOfYear - 4}月",
-                    "${thisMonthOfYear - 3}月",
-                    "${thisMonthOfYear - 2}月",
-                    "${thisMonthOfYear - 1}月",
-                    "${thisMonthOfYear}月"
+                    getMonthString(context,thisMonthOfYear - 5),
+                    getMonthString(context,thisMonthOfYear - 4),
+                    getMonthString(context,thisMonthOfYear - 3),
+                    getMonthString(context,thisMonthOfYear - 2),
+                    getMonthString(context,thisMonthOfYear - 1),
+                    getMonthString(context,thisMonthOfYear)
                 )
-                for (i in 5 downTo 0){
-                    var month = thisMonthOfYear-i
-                    graphTimeUnit.add(GraphTimeUnit("${month}月",
-                        getMonthOfThisYearTimeUnit(month)))
+                for (i in 5 downTo 0) {
+                    val month = thisMonthOfYear - i
+                    graphTimeUnit.add(
+                        GraphTimeUnit(
+                            getMonthString(context,month),
+                            getMonthOfThisYearTimeUnit(month)
+                        )
+                    )
                 }
                 graphTimeUnit
             }
         }
     }
 
+    private fun getMonthString(context:Context, month: Int): String {
+        return when (month) {
+            1 -> {
+                context.getString(R.string.january_text)
+            }
+            2 -> {
+                context.getString(R.string.february_text)
+            }
+            3 -> {
+                context.getString(R.string.march_text)
+            }
+            4 -> {
+                context.getString(R.string.april_text)
+            }
+            5 -> {
+                context.getString(R.string.may_text)
+            }
+            6 -> {
+                context.getString(R.string.june_text)
+            }
+            7 -> {
+                context.getString(R.string.july_text)
+            }
+            8 -> {
+                context.getString(R.string.august_text)
+            }
+            9 -> {
+                context.getString(R.string.september_text)
+            }
+            10 -> {
+                context.getString(R.string.october_text)
+            }
+            11 -> {
+                context.getString(R.string.november_text)
+            }
+            12 -> {
+                context.getString(R.string.december_text)
+            }
+            else -> ""
+        }
+    }
 
 }
 

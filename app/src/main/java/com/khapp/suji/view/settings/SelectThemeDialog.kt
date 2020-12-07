@@ -3,7 +3,7 @@ package com.khapp.suji.view.settings
 import android.content.Context
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.khapp.suji.Config
+import com.khapp.suji.Constance
 import com.khapp.suji.R
 import com.khapp.suji.preset.Theme
 import com.khapp.suji.utils.ScreenUtils
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.dialog_button_action.*
 import kotlinx.android.synthetic.main.dialog_select_theme.*
 
 class SelectThemeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
-    var theme: Theme = Config.theme
+    var theme: Theme = Constance.config.theme
 
     init {
         setContentView(R.layout.dialog_select_theme)
@@ -46,7 +46,7 @@ class SelectThemeDialog(context: Context) : BottomSheetDialog(context, R.style.D
 
     fun setOKListener(onThemeChange: (Theme) -> Unit): SelectThemeDialog {
         dialog_ok.setOnClickListener {
-            if (theme != Config.theme) {
+            if (theme != Constance.config.theme) {
                 onThemeChange(theme)
                 cancel()
             }

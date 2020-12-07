@@ -3,6 +3,7 @@ package com.khapp.suji.view.comm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.khapp.suji.repository.AdditionRepository
+import com.khapp.suji.repository.MainRepository
 import com.khapp.suji.repository.UserRepository
 import com.khapp.suji.repository.TransactionRepository
 import com.khapp.suji.viewmodel.AdditionViewModel
@@ -34,8 +35,8 @@ class UserViewModelFactory(private val repository: UserRepository) :
     }
 }
 
-class MainViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
+class MainViewModelFactory(private val mainRepository: MainRepository) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(userRepository) as T
+        return MainViewModel(mainRepository) as T
     }
 }

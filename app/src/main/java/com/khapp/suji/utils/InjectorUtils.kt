@@ -4,6 +4,7 @@ import com.khapp.suji.App
 import com.khapp.suji.database.Database
 import com.khapp.suji.datastore.AppDataStore
 import com.khapp.suji.repository.AdditionRepository
+import com.khapp.suji.repository.MainRepository
 import com.khapp.suji.repository.UserRepository
 import com.khapp.suji.repository.TransactionRepository
 import com.khapp.suji.view.comm.AdditionViewModelFactory
@@ -30,7 +31,7 @@ object InjectorUtils {
     )
 
     fun provideMainViewModelFactory(): MainViewModelFactory = MainViewModelFactory(
-        UserRepository(
+        MainRepository(
             dataStore
         )
     )

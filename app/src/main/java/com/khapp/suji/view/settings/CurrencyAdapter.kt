@@ -12,22 +12,24 @@ import kotlinx.android.synthetic.main.item_setting_currency.view.*
 
 class CurrencyAdapter(val context: Context) : RecyclerView.Adapter<RVHolder>() {
 
-    var onSelectCurrencyListener :OnSelectCurrencyListener?=null
+    var onSelectCurrencyListener: OnSelectCurrencyListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVHolder {
-        return RVHolder(LayoutInflater.from(context).inflate(R.layout.item_setting_currency,parent,false))
+        return RVHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_setting_currency, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: RVHolder, position: Int) {
         val currency = Currency.values()[position]
         holder.itemView.apply {
-           Glide.with(context).load(currency.icon).into( isc_iv_icon)
+            Glide.with(context).load(currency.icon).into(isc_iv_icon)
             isc_tv_name.text = currency.description
-            setOnClickListener {  }
+            setOnClickListener { }
             setOnFocusChangeListener { view, b ->
-                if (b){
+                if (b) {
                     onSelectCurrencyListener?.onSelect(currency)
                     isc_bg.setBackgroundResource(R.drawable.bg_dialog_setting_item_selected)
-                }else{
+                } else {
                     isc_bg.background = null
                 }
             }
@@ -35,8 +37,9 @@ class CurrencyAdapter(val context: Context) : RecyclerView.Adapter<RVHolder>() {
     }
 
     override fun getItemCount(): Int {
-      return Currency.values().size
+        return Currency.values().size
     }
+
     interface OnSelectCurrencyListener {
         fun onSelect(currency: Currency)
     }

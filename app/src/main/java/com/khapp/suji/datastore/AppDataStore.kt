@@ -1,6 +1,5 @@
 package com.khapp.suji.datastore
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
@@ -9,20 +8,17 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
-import com.khapp.suji.App
-import com.khapp.suji.Config
 import com.khapp.suji.Constance
 import com.khapp.suji.data.UserResponse
+import com.khapp.suji.preset.AppConfig
 import com.khapp.suji.preset.Currency
 import com.khapp.suji.preset.Language
 import com.khapp.suji.preset.Theme
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-//todo 暂时不用
+
 class AppDataStore(val context: Context) {
     private val dataStore: DataStore<Preferences> = context.createDataStore("suji_data")
 
@@ -42,9 +38,8 @@ class AppDataStore(val context: Context) {
 
 
     suspend fun saveConfig(theme: Theme, language: Language, currency: Currency) {
-        Config.theme = theme
-        Config.language = language
-        Config.currency = currency
+        val config = AppConfig(theme, language, currency)
+        Constance.config = config
         dataStore.edit {
             it[CONFIG_THEME] = theme.toString()
             it[CONFIG_LANGUAGE] = language.toString()
@@ -52,14 +47,36 @@ class AppDataStore(val context: Context) {
         }
     }
 
-    //todo
-    fun loadConfig() {
-        dataStore.data.map {
-            Config.currency = Currency.valueOf(it[CONFIG_CURRENCY] ?: "CNY")
-            Config.theme = Theme.valueOf(it[CONFIG_THEME] ?: "AUTO")
-            Config.language = Language.valueOf(it[CONFIG_LANGUAGE] ?: "CHN")
+    fun getLanguage() = dataStore.data.catch {
+        if (it is IOException) {
+            it.printStackTrace()
+            emit(emptyPreferences())
+        } else {
+            throw it
         }
+    }.map {
+        val language = Language.valueOf(it[CONFIG_LANGUAGE] ?: "CHN")
+        language
     }
+
+
+    fun loadConfig() =
+        dataStore.data.catch {
+            if (it is IOException) {
+                it.printStackTrace()
+                emit(emptyPreferences())
+            } else {
+                throw it
+            }
+        }.map {
+            val currency = Currency.valueOf(it[CONFIG_CURRENCY] ?: "CNY")
+            val theme = Theme.valueOf(it[CONFIG_THEME] ?: "AUTO")
+            val language = Language.valueOf(it[CONFIG_LANGUAGE] ?: "CHN")
+            val config = AppConfig(theme, language, currency)
+            Constance.config = config
+            config
+        }
+
 
     suspend fun saveUserData(user: UserResponse) {
         Constance.user = user

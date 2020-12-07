@@ -66,7 +66,7 @@
         android:ellipsize="marquee"
         android:gravity="center"
         android:singleLine="true"
-        android:text="添加"
+        android:text="@string/add_text"
         android:textColor="@color/primary"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@id/da_iv_addType"

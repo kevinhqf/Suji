@@ -39,8 +39,8 @@ class UserProfileDialog(context: Context, private val viewModel: UserViewModel) 
         dp_btn_next.setOnClickListener {
             val email = dp_et_email.editableText.toString()
             val name = dp_et_name.editableText.toString()
-            if (viewModel.checkName(name) { Utils.toast(context, "用户名至少3个字符") }
-                && viewModel.checkEmail(email) { Utils.toast(context, "邮箱格式不正确") }) {
+            if (viewModel.checkName(name) { Utils.toast(context, context.getString(R.string.user_name_tip)) }
+                && viewModel.checkEmail(email) { Utils.toast(context, context.getString(R.string.email_tip)) }) {
                 user?.let {
                     if (loadingDialog == null)
                         loadingDialog = LoadingDialog(context)
@@ -52,7 +52,7 @@ class UserProfileDialog(context: Context, private val viewModel: UserViewModel) 
                         email,
                         avatarPath,
                         success = {
-                            Utils.toast(context,"保存成功")
+                            Utils.toast(context,context.getString(R.string.save_success))
                             cancel()
                         },
                         error = { code, msg ->

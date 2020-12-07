@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="选择图标"
+        android:text="@string/select_icon_title"
         android:textColor="#D9383838"
         android:textSize="25sp"
         android:textStyle="bold"

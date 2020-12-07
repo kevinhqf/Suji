@@ -1,16 +1,20 @@
 package com.khapp.suji
 
 import com.khapp.suji.data.UserResponse
+import com.khapp.suji.preset.AppConfig
 import com.khapp.suji.preset.Currency
+import com.khapp.suji.preset.Theme
 
 object Constance {
+    var config: AppConfig = AppConfig()
     var user: UserResponse = EMPTY_USER
-    var userId:Long = -1L
+    var userId: Long = -1L
     var lat = 0.0
     var lng = 0.0
     var address = ""
     var API_RESOURCES_HOST = "http://106.53.237.34"
 }
+
 val EMPTY_USER = UserResponse(-1)
 const val CODE_USER_LOGIN = 1
 const val CODE_USER_SIGNUP = 2

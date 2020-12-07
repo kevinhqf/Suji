@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="今天"
+        android:text="@string/home_title"
         android:textColor="@android:color/white"
         android:textSize="@dimen/page_title_text_size"
         android:textStyle="bold"
@@ -88,7 +88,7 @@
                     android:id="@+id/oh_tv_expense_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="支出"
+                    android:text="@string/expense_text"
                     android:textColor="#95FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@id/oh_iv_expense"
                     app:layout_constraintStart_toEndOf="@id/oh_iv_expense"
@@ -139,7 +139,7 @@
                     android:id="@+id/oh_tv_income_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="收入"
+                    android:text="@string/income_text"
                     android:textColor="#95FFFFFF" />
             </LinearLayout>
 
@@ -169,7 +169,7 @@
         android:paddingTop="2dp"
         android:paddingBottom="6dp"
         android:textColor="@android:color/white"
-        android:text="今天还没有记账记录哦~"
+        android:text="@string/today_transaction_tip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/oh_card"

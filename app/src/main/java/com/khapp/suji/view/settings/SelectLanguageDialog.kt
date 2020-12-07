@@ -3,7 +3,7 @@ package com.khapp.suji.view.settings
 import android.content.Context
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.khapp.suji.Config
+import com.khapp.suji.Constance
 import com.khapp.suji.R
 import com.khapp.suji.preset.Language
 import com.khapp.suji.utils.ScreenUtils
@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.dialog_button_action.*
 import kotlinx.android.synthetic.main.dialog_select_language.*
 
 class SelectLanguageDialog(context: Context) : BottomSheetDialog(context, R.style.Dialog) {
-    var language: Language = Config.language
+    var language: Language = Constance.config.language
 
     init {
         setContentView(R.layout.dialog_select_language)
@@ -48,8 +48,7 @@ class SelectLanguageDialog(context: Context) : BottomSheetDialog(context, R.styl
 
     fun setOKListener(onLanguageChange: (Language) -> Unit): SelectLanguageDialog {
         dialog_ok.setOnClickListener {
-            if (language != Config.language)
-            {
+            if (language != Constance.config.language) {
                 onLanguageChange(language)
                 cancel()
             }

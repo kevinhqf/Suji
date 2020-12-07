@@ -49,10 +49,10 @@ class AddTypeDialog(context: Context) : BottomSheetDialog(context, R.style.Dialo
             dataName = dat_et_name.text.toString()
             when {
                 dataName.isEmpty() -> {
-                    Utils.toast(context, "请输入类型名称")
+                    Utils.toast(context, context.getString(R.string.add_type_name_tip))
                 }
                 dataIconUrl.isEmpty() -> {
-                    Utils.toast(context, "请选择类型图标")
+                    Utils.toast(context, context.getString(R.string.add_type_icon_tip))
                 }
                 else -> {
                     onOK(DataType(dataName, dataType, dataIconUrl))

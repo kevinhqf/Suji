@@ -49,7 +49,7 @@ class SelectIconDialog(context: Context,private val icons:List<Resources>) : Bot
                 onOK.invoke(selectedIcon!!)
                 cancel()
             }else{
-                Utils.toast(context,"请选择图标")
+                Utils.toast(context,context.getString(R.string.select_icon_tip))
             }
         }
         return this

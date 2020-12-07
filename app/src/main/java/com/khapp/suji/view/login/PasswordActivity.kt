@@ -47,11 +47,12 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
     override fun initViews() {
         loading = LoadingDialog(this)
         ap_btn_ok.text =
-            if (code == CODE_USER_LOGIN) "登 录" else if (code == CODE_USER_SIGNUP) "注 册" else ""
+            if (code == CODE_USER_LOGIN) getString(R.string.login_text) else if (code == CODE_USER_SIGNUP) getString(
+                            R.string.signup_text) else ""
         if (code == CODE_USER_SIGNUP) {
             switchEditTextInputType()
         }
-        ap_tv_tip.text = "密码不少于8位且包含字母和数字"
+        ap_tv_tip.text = getString(R.string.password_tip)
         ap_et_password.requestFocus()
     }
 
@@ -80,7 +81,7 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
                     })
             }, { code, msg ->
                 if (code == CODE_ERROR_USER_WRONG_PASSWORD) {
-                    setTip("密码错误")
+                    setTip(getString(R.string.wrong_password_tip))
                 } else {
                     setTip(msg)
                 }
@@ -112,7 +113,7 @@ class PasswordActivity : BaseActivity(R.layout.activity_password) {
         userViewMode.passwordValid.observe(this, Observer {
             ap_btn_ok.isEnabled = it
             if (it==false){
-                setTip("密码不少于8位且包含字母和数字")
+                setTip(getString(R.string.password_tip))
             }
         })
     }

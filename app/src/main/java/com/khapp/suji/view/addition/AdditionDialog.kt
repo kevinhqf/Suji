@@ -125,8 +125,8 @@ class AdditionDialog(context: Context) : BottomSheetDialog(context, R.style.Dial
         }
         numpad_ok.setOnClickListener {
             vm.addTransaction(
-                { Utils.toast(context, "请选择记账类型") },
-                { Utils.toast(context, "请输入记账金额") },
+                { Utils.toast(context, context.getString(R.string.add_type_tip)) },
+                { Utils.toast(context, context.getString(R.string.add_value_tip)) },
                 { cancel() })
 
         }

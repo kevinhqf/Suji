@@ -10,7 +10,7 @@ class AppAlertDialog(context: Context) : Dialog(context, R.style.Dialog) {
 
     init {
         setContentView(R.layout.dialog_alert)
-        cancel("取消")
+        cancel(context.getString(R.string.cancel_text))
     }
 
     fun message(message: String): AppAlertDialog {
