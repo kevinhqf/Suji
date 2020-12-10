@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_home_top">
+    android:background="@drawable/home_overview_bg">
 
     <TextView
         android:id="@+id/oh_tv_title"
@@ -12,7 +12,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/home_title"
-        android:textColor="@android:color/white"
+        android:textColor="@color/home_overview_text"
         android:textSize="@dimen/page_title_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
         android:fontFamily="@font/exo_2_bold"
         android:gravity="center"
         android:text="￥0.00"
-        android:textColor="@android:color/white"
+        android:textColor="@color/home_overview_text"
         android:textSize="@dimen/page_money_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@android:color/black"
+        app:cardBackgroundColor="@color/home_overview_detail_bg"
         app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="@id/oh_iv_add"
@@ -103,7 +103,7 @@
                 android:gravity="center"
                 android:text="￥0.00"
                 android:fontFamily="@font/exo_2_bold"
-                android:textColor="@android:color/white"
+                android:textColor="@color/home_overview_text"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toStartOf="@id/oh_split"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="￥0.00"
-                android:textColor="@android:color/white"
+                android:textColor="@color/home_overview_text"
                 android:textSize="19sp"
                 android:fontFamily="@font/exo_2_bold"
                 app:layout_constraintEnd_toEndOf="parent"

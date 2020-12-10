@@ -9,6 +9,7 @@
     app:cardCornerRadius="50dp"
     app:cardElevation="10dp"
     app:cardUseCompatPadding="false"
+    app:cardBackgroundColor="@color/card_background"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
@@ -95,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_text"
-                android:textColor="@android:color/white"
+                android:textColor="@color/menu_text"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>

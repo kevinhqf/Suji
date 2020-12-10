@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,10 +17,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.khapp.suji.Constance
 import com.khapp.suji.MainActivity
 import com.khapp.suji.R
+import com.khapp.suji.preset.Theme
 import com.khapp.suji.ui.AppAlertDialog
 import com.khapp.suji.ui.LoadingDialog
 import com.khapp.suji.utils.InjectorUtils
 import com.khapp.suji.utils.LanguageUtils
+import com.khapp.suji.view.comm.BaseActivity
 import com.khapp.suji.view.comm.OnMainPageScrollListener
 import com.khapp.suji.view.login.LoginActivity
 import com.khapp.suji.viewmodel.MainViewModel
@@ -72,7 +75,13 @@ class SettingsFragment : Fragment() {
             fs_item_theme.setOnClickListener {
                 themeDialog?.setOKListener {
                     mainViewModel.saveConfig(theme = it) {
-
+                        val mode = when (it) {
+                            Theme.AUTO -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                            Theme.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+                            Theme.DARK -> AppCompatDelegate.MODE_NIGHT_YES
+                        }
+                        (requireActivity() as BaseActivity).delegate.localNightMode = mode
+                        requireActivity().recreate()
                     }
                 }?.show()
             }
@@ -83,7 +92,7 @@ class SettingsFragment : Fragment() {
                         Handler().postDelayed(Runnable {
                             //切换语言
                             LanguageUtils.changeLanguage(requireContext())
-                        },2000)
+                        }, 2000)
                     }
                 }?.show()
             }

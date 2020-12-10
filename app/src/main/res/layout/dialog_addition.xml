@@ -38,7 +38,7 @@
             android:lines="1"
             android:text="￥0"
             android:textAlignment="textEnd"
-            android:textColor="@color/primary"
+            android:textColor="@color/addition_value_text"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="@id/da_iv_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/add_text"
-        android:textColor="@color/primary"
+        android:textColor="@color/addition_add_text"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@id/da_iv_addType"
         app:layout_constraintStart_toStartOf="@id/da_iv_addType"
@@ -96,6 +96,7 @@
         app:layout_constraintTop_toBottomOf="@id/da_tv_addType" />
 
     <include
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/da_numpad"
         layout="@layout/widget_numpad"
         android:layout_width="0dp"

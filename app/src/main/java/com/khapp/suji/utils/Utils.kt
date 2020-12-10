@@ -51,7 +51,7 @@ object Utils {
     fun formatTransactionTime(time: Long): String {
         val date = Date(time)
         val sign = if (date.hours >= 12) "PM" else "AM"
-        return SimpleDateFormat("MM-dd,yyyy h:mm", Locale.getDefault()).format(date) + sign
+        return SimpleDateFormat("M/d,yyyy h:mm", Locale.getDefault()).format(date) + sign
     }
 
     fun getTodayTimeUnit(): TimeUnit {

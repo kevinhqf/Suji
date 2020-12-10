@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/activity_background"
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity">
 
@@ -23,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/exo_2"
         android:text="@string/login_tip_title"
-        android:textColor="#232127"
+        android:textColor="@color/login_title"
         android:textSize="@dimen/big_title_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/al_back"
@@ -36,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/exo_2"
         android:text="+86"
-        android:textColor="@color/primary_dark"
+        android:textColor="@color/login_country_code"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="@id/al_tv_title"
         app:layout_constraintTop_toBottomOf="@id/al_tv_title" />
@@ -48,7 +49,7 @@
         android:layout_marginStart="16dp"
         android:fontFamily="@font/exo_2"
         android:text="000-0000-0000"
-        android:textColor="#D2D2D4"
+        android:textColor="@color/login_phone_place_holder"
         android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@id/al_tv_countryCode"
         app:layout_constraintTop_toTopOf="@id/al_tv_countryCode" />

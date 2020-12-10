@@ -48,7 +48,7 @@ class SelectThemeDialog(context: Context) : BottomSheetDialog(context, R.style.D
         dialog_ok.setOnClickListener {
             if (theme != Constance.config.theme) {
                 onThemeChange(theme)
-                cancel()
+                //cancel()
             }
         }
         return this

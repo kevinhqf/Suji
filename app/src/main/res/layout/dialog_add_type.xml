@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/add_type_title"
-        android:textColor="#D9383838"
+        android:textColor="@color/dialog_title"
         android:textSize="25sp"
         android:textStyle="bold"
 
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/income_text"
-                android:textColor="#A9A8AC"
+                android:textColor="@color/switcher_normal_text"
                 android:textSize="19sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

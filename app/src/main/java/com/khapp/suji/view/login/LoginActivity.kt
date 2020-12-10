@@ -106,10 +106,10 @@ class LoginActivity : BaseActivity(R.layout.activity_login) {
         userViewModel.phone.observe(this, Observer {
             if (it.isNullOrEmpty()) {
                 al_tv_phone.text = UserViewModel.DEFAULT_PHONE
-                al_tv_phone.setTextColor(Color.parseColor("#D2D2D4"))
+                al_tv_phone.setTextColor(resources.getColor(R.color.login_phone_place_holder))
             } else {
                 al_tv_phone.text = it
-                al_tv_phone.setTextColor(Color.parseColor("#D9000000"))
+                al_tv_phone.setTextColor(resources.getColor(R.color.login_phone_text))
                 al_btn_next.isEnabled = it.length == UserViewModel.DEFAULT_PHONE.length
 
             }

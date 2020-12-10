@@ -60,7 +60,18 @@ class AppDataStore(val context: Context) {
         language
     }
 
-
+    fun getTheme() = dataStore.data.catch {
+        if (it is IOException) {
+            it.printStackTrace()
+            emit(emptyPreferences())
+        } else {
+            throw it
+        }
+    }.map {
+        val theme = Theme.valueOf(it[CONFIG_THEME] ?: "AUTO")
+        Constance.config.theme = theme
+        theme
+    }
 
 
     fun loadConfig() =
