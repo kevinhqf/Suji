@@ -71,7 +71,6 @@ class SettingsFragment : Fragment() {
 
     private fun initListeners() {
         root?.apply {
-            //todo 选择后设置config并应用修改后的配置
             fs_item_theme.setOnClickListener {
                 themeDialog?.setOKListener {
                     mainViewModel.saveConfig(theme = it) {

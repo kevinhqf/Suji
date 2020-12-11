@@ -85,6 +85,7 @@ class UserViewModel(private val repository: UserRepository) : BaseViewModel() {
         )
     }
 
+    // TODO: 12/10/20 同步本地数据到账户
     fun passwordAction(
         phone: String,
         password: String,
@@ -112,7 +113,7 @@ class UserViewModel(private val repository: UserRepository) : BaseViewModel() {
     }
 
     fun logout() {
-        //todo 二次确认,绑定的数据需要发生变化
+        //
         launchIO {
             repository.saveUserLocal(EMPTY_USER)
         }
